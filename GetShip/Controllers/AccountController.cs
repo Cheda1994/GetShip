@@ -18,7 +18,9 @@ namespace GetShip.Controllers
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
+
         }
+
 
         public AccountController(UserManager<ApplicationUser> userManager)
         {
