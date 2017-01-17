@@ -4,23 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using GetShip.Models;
 
 namespace GetShip.Controllers
 {
     public class HomeController : Controller
     {
 
-        public string CurrentUser
-        {
-            get
-            {
-                return User.Identity.GetUserId();
-            }
-        }
-        
+        public UserManager<ApplicationUser> CurrentUserManager { get; set; }
         public ActionResult Index()
         {
-            ViewBag.User = CurrentUser;
+            Users user = new Users();
+           ViewBag.User =  user.CurrentUser().Age;
+
             return View();
         }
 
