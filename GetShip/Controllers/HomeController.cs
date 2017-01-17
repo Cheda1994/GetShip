@@ -15,10 +15,18 @@ namespace GetShip.Controllers
         public UserManager<ApplicationUser> CurrentUserManager { get; set; }
         public ActionResult Index()
         {
+            ApplicationUser currentUser;
+            if (User.Identity.IsAuthenticated)
+            {
             Users user = new Users();
-           ViewBag.User =  user.CurrentUser().Age;
-
-            return View();
+            var currentUserId = User.Identity.GetUserId();
+            currentUser =  user.User(currentUserId);
+            }
+            else
+            {
+                currentUser = new ApplicationUser();
+            }
+            return View(currentUser);
         }
 
         public ActionResult About()

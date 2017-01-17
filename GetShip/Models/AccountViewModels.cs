@@ -13,11 +13,12 @@ namespace GetShip.Models
     public class Users
     {
         ApplicationDbContext db = new ApplicationDbContext();
-       public ApplicationUser CurrentUser()
+       public ApplicationUser User(string id)
        {  
-           var a = db.Users.Find("17c7ff18-67eb-4686-97a4-bf496b772f8d");
-           return a;
+           var user = db.Users.Find(id);
+           return user;
        }
+
     }
 
     public class ManageUserViewModel
