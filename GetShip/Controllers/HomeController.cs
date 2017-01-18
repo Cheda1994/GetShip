@@ -11,16 +11,21 @@ namespace GetShip.Controllers
 {
     public class HomeController : Controller
     {
-
-        public UserManager<ApplicationUser> CurrentUserManager { get; set; }
+       static string CurrentUserId
+       {
+           get
+           {
+               return System.Web.HttpContext.Current.User.Identity.GetUserId();
+           }
+       }
         public ActionResult Index()
         {
             ApplicationUser currentUser;
             if (User.Identity.IsAuthenticated)
             {
             Users user = new Users();
-            var currentUserId = User.Identity.GetUserId();
-            currentUser =  user.User(currentUserId);
+
+            currentUser =  user.User(CurrentUserId);
             }
             else
             {
