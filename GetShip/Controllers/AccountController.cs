@@ -115,7 +115,15 @@ namespace GetShip.Controllers
             }
             return RedirectToAction("Manage", new { Message = message });
         }
-
+        //
+        //Employee create method
+        private static void NewEmployee(ApplicationUser user)
+        {
+            var employer = new Employee();
+            EmployeeContext empDb = new EmployeeContext();
+            empDb.Employeers.Add(employer);
+            empDb.SaveChanges();
+        }
         //
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)

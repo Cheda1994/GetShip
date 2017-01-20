@@ -11,27 +11,21 @@ namespace GetShip.Controllers
 {
     public class HomeController : Controller
     {
-       static string CurrentUserId
-       {
-           get
-           {
-               return System.Web.HttpContext.Current.User.Identity.GetUserId();
-           }
-       }
+        static string CurrentUserId
+        {
+            get
+            {
+                return System.Web.HttpContext.Current.User.Identity.GetUserId();
+            }
+            set 
+            {
+                CurrentUserId = value;
+            }
+        }
         public ActionResult Index()
         {
-            ApplicationUser currentUser;
-            if (User.Identity.IsAuthenticated)
-            {
-            Users user = new Users();
-
-            currentUser =  user.User(CurrentUserId);
-            }
-            else
-            {
-                currentUser = new ApplicationUser();
-            }
-            return View(currentUser);
+            var emp = new EmployeeContext();            
+            return View(emp.Employeers);
         }
 
         public ActionResult About()

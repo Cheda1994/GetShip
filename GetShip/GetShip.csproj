@@ -171,8 +171,13 @@
     <Compile Include="Migrations\201701161008280_AddAgeAndProfessionToUser.Designer.cs">
       <DependentUpon>201701161008280_AddAgeAndProfessionToUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701201624540_AddEmplToUSer.cs" />
+    <Compile Include="Migrations\201701201624540_AddEmplToUSer.Designer.cs">
+      <DependentUpon>201701201624540_AddEmplToUSer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Profesion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -224,6 +229,8 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_IsAuthentPartial.cshtml" />
+    <Content Include="Views\Shared\_GuestPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -241,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701161008280_AddAgeAndProfessionToUser.resx">
       <DependentUpon>201701161008280_AddAgeAndProfessionToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701201624540_AddEmplToUSer.resx">
+      <DependentUpon>201701201624540_AddEmplToUSer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
