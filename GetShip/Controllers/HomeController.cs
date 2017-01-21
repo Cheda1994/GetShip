@@ -24,6 +24,7 @@ namespace GetShip.Controllers
         }
         public ActionResult Index()
         {
+
             var emp = new EmployeeContext();            
             return View(emp.Employeers);
         }

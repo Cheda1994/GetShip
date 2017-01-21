@@ -14,7 +14,6 @@ namespace GetShip.Models
         public string Name { get; set; }
         public ICollection<double> Salary { get; set; }
         public string SecretKey { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
     }
 
     public class EmployeeContext : DbContext

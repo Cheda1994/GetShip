@@ -9,7 +9,9 @@ namespace GetShip.Models
         public int Age { get; set; }
         public Profesion Profesion { get; set; }
         public virtual Employee Employee { get; set; }
+
     }
+
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

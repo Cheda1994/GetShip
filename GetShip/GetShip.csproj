@@ -175,6 +175,18 @@
     <Compile Include="Migrations\201701201624540_AddEmplToUSer.Designer.cs">
       <DependentUpon>201701201624540_AddEmplToUSer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701211904316_MigrationForBuild.cs" />
+    <Compile Include="Migrations\201701211904316_MigrationForBuild.Designer.cs">
+      <DependentUpon>201701211904316_MigrationForBuild.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701211925065_AddRolesToRoleManager.cs" />
+    <Compile Include="Migrations\201701211925065_AddRolesToRoleManager.Designer.cs">
+      <DependentUpon>201701211925065_AddRolesToRoleManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701211932085_AddAdminRoleToRoleManager.cs" />
+    <Compile Include="Migrations\201701211932085_AddAdminRoleToRoleManager.Designer.cs">
+      <DependentUpon>201701211932085_AddAdminRoleToRoleManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -251,6 +263,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701201624540_AddEmplToUSer.resx">
       <DependentUpon>201701201624540_AddEmplToUSer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701211904316_MigrationForBuild.resx">
+      <DependentUpon>201701211904316_MigrationForBuild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701211925065_AddRolesToRoleManager.resx">
+      <DependentUpon>201701211925065_AddRolesToRoleManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701211932085_AddAdminRoleToRoleManager.resx">
+      <DependentUpon>201701211932085_AddAdminRoleToRoleManager.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

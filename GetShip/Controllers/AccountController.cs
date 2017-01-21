@@ -80,8 +80,10 @@ namespace GetShip.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName , Age = model.Age};
+                var context = new ApplicationDbContext();
+                var user = new ApplicationUser() { UserName = model.UserName , Age = model.Age };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                UserManager.AddToRole(user.Id, "Admin");
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
