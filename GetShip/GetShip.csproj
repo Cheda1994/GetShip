@@ -171,7 +171,9 @@
     <Compile Include="Migrations\201701161008280_AddAgeAndProfessionToUser.Designer.cs">
       <DependentUpon>201701161008280_AddAgeAndProfessionToUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701201624540_AddEmplToUSer.cs" />
+    <Compile Include="Migrations\201701201624540_AddEmplToUSer.cs">
+      <BrowseToURL>R</BrowseToURL>
+    </Compile>
     <Compile Include="Migrations\201701201624540_AddEmplToUSer.Designer.cs">
       <DependentUpon>201701201624540_AddEmplToUSer.cs</DependentUpon>
     </Compile>
@@ -186,6 +188,38 @@
     <Compile Include="Migrations\201701211932085_AddAdminRoleToRoleManager.cs" />
     <Compile Include="Migrations\201701211932085_AddAdminRoleToRoleManager.Designer.cs">
       <DependentUpon>201701211932085_AddAdminRoleToRoleManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701230934143_ChangeUserIdFromStringToInt.cs" />
+    <Compile Include="Migrations\201701230934143_ChangeUserIdFromStringToInt.Designer.cs">
+      <DependentUpon>201701230934143_ChangeUserIdFromStringToInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701230951206_TestConection.cs" />
+    <Compile Include="Migrations\201701230951206_TestConection.Designer.cs">
+      <DependentUpon>201701230951206_TestConection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701230953094_TestConection1.cs" />
+    <Compile Include="Migrations\201701230953094_TestConection1.Designer.cs">
+      <DependentUpon>201701230953094_TestConection1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701230954140_TestConection2.cs" />
+    <Compile Include="Migrations\201701230954140_TestConection2.Designer.cs">
+      <DependentUpon>201701230954140_TestConection2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701231413427_IsThisNormai-MigrationTEst.cs" />
+    <Compile Include="Migrations\201701231413427_IsThisNormai-MigrationTEst.Designer.cs">
+      <DependentUpon>201701231413427_IsThisNormai-MigrationTEst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701231459084_DbChangesWithEmployeers.cs" />
+    <Compile Include="Migrations\201701231459084_DbChangesWithEmployeers.Designer.cs">
+      <DependentUpon>201701231459084_DbChangesWithEmployeers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701231501590_DbChangesWithEmployeers1.cs" />
+    <Compile Include="Migrations\201701231501590_DbChangesWithEmployeers1.Designer.cs">
+      <DependentUpon>201701231501590_DbChangesWithEmployeers1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701231504292_DbChangesWithEmployeers2.cs" />
+    <Compile Include="Migrations\201701231504292_DbChangesWithEmployeers2.Designer.cs">
+      <DependentUpon>201701231504292_DbChangesWithEmployeers2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -272,6 +306,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701211932085_AddAdminRoleToRoleManager.resx">
       <DependentUpon>201701211932085_AddAdminRoleToRoleManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701230934143_ChangeUserIdFromStringToInt.resx">
+      <DependentUpon>201701230934143_ChangeUserIdFromStringToInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701230951206_TestConection.resx">
+      <DependentUpon>201701230951206_TestConection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701230953094_TestConection1.resx">
+      <DependentUpon>201701230953094_TestConection1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701230954140_TestConection2.resx">
+      <DependentUpon>201701230954140_TestConection2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701231413427_IsThisNormai-MigrationTEst.resx">
+      <DependentUpon>201701231413427_IsThisNormai-MigrationTEst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701231459084_DbChangesWithEmployeers.resx">
+      <DependentUpon>201701231459084_DbChangesWithEmployeers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701231501590_DbChangesWithEmployeers1.resx">
+      <DependentUpon>201701231501590_DbChangesWithEmployeers1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701231504292_DbChangesWithEmployeers2.resx">
+      <DependentUpon>201701231504292_DbChangesWithEmployeers2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -24,9 +24,9 @@ namespace GetShip.Controllers
         }
         public ActionResult Index()
         {
-
+            Test();
             var emp = new EmployeeContext();            
-            return View(emp.Employeers);
+            return View(emp);
         }
 
         public ActionResult About()
@@ -41,6 +41,15 @@ namespace GetShip.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public static void Test()
+        {
+            var emp = new Employee();
+            var con = new EmployeeContext();
+            emp.Place = "sdsdsd";
+            con.Employeers.Add(emp);
+            con.SaveChanges();
         }
     }
 }

@@ -68,7 +68,16 @@ namespace GetShip.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            Users user = new Users();
+            var curretUser = user.User(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            if (curretUser != null) { 
+            if (curretUser.Roles.Any(i => i.RoleId == "Admin"))
+            {
+              return View();  
+            }
+            }
+            return View("~/Views/Home/Index.cshtml");
+            
         }
 
         //
