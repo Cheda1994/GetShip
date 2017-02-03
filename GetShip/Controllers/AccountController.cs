@@ -68,45 +68,46 @@ namespace GetShip.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            Users user = new Users();
-            var curretUser = user.User(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            if (curretUser != null) { 
-            if (curretUser.Roles.Any(i => i.RoleId == "Admin"))
-            {
-              return View();  
-            }
-            }
-            return View("~/Views/Home/Index.cshtml");
-            
+              return View();              
         }
+
+
+        public ActionResult AddCompany()
+        {
+            Users user = new Users();
+            ApplicationUser current_user = user.GetUser("b828ea2f-513c-4726-b3d7-da5ea5222831");
+            CompanyContext context = new CompanyContext();
+            Company comp = new Company();
+            comp.ApplicationUser.Id = current_user.Id;
+            context.Companies.Add(comp);
+            context.SaveChanges();
+            return View("Index");
+        }
+
 
         //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async virtual Task<string> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            //ApplicationUser user;
+            //if (ModelState.IsValid)
+            //{
                 var context = new ApplicationDbContext();
-                var user = new ApplicationUser() { UserName = model.UserName , Age = model.Age };
+                var user = new ApplicationUser() { UserName = model.UserName , Age = model.Age, Role = model.Role };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                UserManager.AddToRole(user.Id, "Admin");
-                if (result.Succeeded)
-                {
-                    await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    AddErrors(result);
-                }
+                Users created = new Users();
+                var createdUser = created.GetUser(user.Id);
+                return user.Id;
+            //}
+            //else 
+            //{
+            //    Exception ex = new ArgumentNullException();
+            //    return ex;
+            //}
             }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
 
         //
         // POST: /Account/Disassociate
@@ -127,15 +128,6 @@ namespace GetShip.Controllers
             return RedirectToAction("Manage", new { Message = message });
         }
         //
-        //Employee create method
-        private static void NewEmployee(ApplicationUser user)
-        {
-            var employer = new Employee();
-            EmployeeContext empDb = new EmployeeContext();
-            empDb.Employeers.Add(employer);
-            empDb.SaveChanges();
-        }
-        //
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)
         {
@@ -151,6 +143,17 @@ namespace GetShip.Controllers
         }
 
         //
+
+        //public static ApplicationUser Test(ApplicationUser user)
+        //{
+
+        //    var emp = new Employe();
+        //    var empCont = new EmployeContext();
+        //    user.Employe = emp;
+        //    user.Employe.Id = 222;
+        //    user.Employe.Name = "Name";
+        //    return user;
+        //}
         // POST: /Account/Manage
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -265,6 +268,29 @@ namespace GetShip.Controllers
             }
             return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
         }
+
+
+        private void CreatingEmployeType(ApplicationUser user)
+        {
+            CompanyContext context = new CompanyContext();
+            switch(user.Role)
+            {
+                case "Employe":
+                    Employe employ = new Employe();
+                    employ.User = user;
+                    context.Employes.Add(employ);
+                    break;
+                case "Company":
+                    Company comp = new Company();
+                    comp.ApplicationUser = new ApplicationUser();
+                    comp.ApplicationUser = user;
+                    context.Companies.Add(comp);
+                    break;
+            }
+            context.SaveChanges();
+        }
+
+
 
         //
         // POST: /Account/ExternalLoginConfirmation

@@ -13,8 +13,4 @@ namespace GetShip.Models
         public string Description { get; set; }
     }
 
-    public class ProfessionContext : DbContext
-    {
-        public DbSet<Profesion> Professions { get; set; }
-    }
 }

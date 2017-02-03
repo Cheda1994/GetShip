@@ -3,7 +3,7 @@ namespace GetShip.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DbChangesWithEmployeers2 : DbMigration
+    public partial class NewConections : DbMigration
     {
         public override void Up()
         {

@@ -158,72 +158,22 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\UserSystem.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701151851038_InitialCreate.cs" />
-    <Compile Include="Migrations\201701151851038_InitialCreate.Designer.cs">
-      <DependentUpon>201701151851038_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701161008280_AddAgeAndProfessionToUser.cs" />
-    <Compile Include="Migrations\201701161008280_AddAgeAndProfessionToUser.Designer.cs">
-      <DependentUpon>201701161008280_AddAgeAndProfessionToUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701201624540_AddEmplToUSer.cs">
-      <BrowseToURL>R</BrowseToURL>
-    </Compile>
-    <Compile Include="Migrations\201701201624540_AddEmplToUSer.Designer.cs">
-      <DependentUpon>201701201624540_AddEmplToUSer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701211904316_MigrationForBuild.cs" />
-    <Compile Include="Migrations\201701211904316_MigrationForBuild.Designer.cs">
-      <DependentUpon>201701211904316_MigrationForBuild.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701211925065_AddRolesToRoleManager.cs" />
-    <Compile Include="Migrations\201701211925065_AddRolesToRoleManager.Designer.cs">
-      <DependentUpon>201701211925065_AddRolesToRoleManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701211932085_AddAdminRoleToRoleManager.cs" />
-    <Compile Include="Migrations\201701211932085_AddAdminRoleToRoleManager.Designer.cs">
-      <DependentUpon>201701211932085_AddAdminRoleToRoleManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701230934143_ChangeUserIdFromStringToInt.cs" />
-    <Compile Include="Migrations\201701230934143_ChangeUserIdFromStringToInt.Designer.cs">
-      <DependentUpon>201701230934143_ChangeUserIdFromStringToInt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701230951206_TestConection.cs" />
-    <Compile Include="Migrations\201701230951206_TestConection.Designer.cs">
-      <DependentUpon>201701230951206_TestConection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701230953094_TestConection1.cs" />
-    <Compile Include="Migrations\201701230953094_TestConection1.Designer.cs">
-      <DependentUpon>201701230953094_TestConection1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701230954140_TestConection2.cs" />
-    <Compile Include="Migrations\201701230954140_TestConection2.Designer.cs">
-      <DependentUpon>201701230954140_TestConection2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701231413427_IsThisNormai-MigrationTEst.cs" />
-    <Compile Include="Migrations\201701231413427_IsThisNormai-MigrationTEst.Designer.cs">
-      <DependentUpon>201701231413427_IsThisNormai-MigrationTEst.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701231459084_DbChangesWithEmployeers.cs" />
-    <Compile Include="Migrations\201701231459084_DbChangesWithEmployeers.Designer.cs">
-      <DependentUpon>201701231459084_DbChangesWithEmployeers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701231501590_DbChangesWithEmployeers1.cs" />
-    <Compile Include="Migrations\201701231501590_DbChangesWithEmployeers1.Designer.cs">
-      <DependentUpon>201701231501590_DbChangesWithEmployeers1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701231504292_DbChangesWithEmployeers2.cs" />
-    <Compile Include="Migrations\201701231504292_DbChangesWithEmployeers2.Designer.cs">
-      <DependentUpon>201701231504292_DbChangesWithEmployeers2.cs</DependentUpon>
+    <Compile Include="Migrations\201701301856132_NewConections.cs" />
+    <Compile Include="Migrations\201701301856132_NewConections.Designer.cs">
+      <DependentUpon>201701301856132_NewConections.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Employe.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Profesion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -277,6 +227,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_IsAuthentPartial.cshtml" />
     <Content Include="Views\Shared\_GuestPartial.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Company\MyOffice.cshtml" />
+    <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Company\NewCompany.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -289,47 +244,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701151851038_InitialCreate.resx">
-      <DependentUpon>201701151851038_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701161008280_AddAgeAndProfessionToUser.resx">
-      <DependentUpon>201701161008280_AddAgeAndProfessionToUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701201624540_AddEmplToUSer.resx">
-      <DependentUpon>201701201624540_AddEmplToUSer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701211904316_MigrationForBuild.resx">
-      <DependentUpon>201701211904316_MigrationForBuild.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701211925065_AddRolesToRoleManager.resx">
-      <DependentUpon>201701211925065_AddRolesToRoleManager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701211932085_AddAdminRoleToRoleManager.resx">
-      <DependentUpon>201701211932085_AddAdminRoleToRoleManager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701230934143_ChangeUserIdFromStringToInt.resx">
-      <DependentUpon>201701230934143_ChangeUserIdFromStringToInt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701230951206_TestConection.resx">
-      <DependentUpon>201701230951206_TestConection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701230953094_TestConection1.resx">
-      <DependentUpon>201701230953094_TestConection1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701230954140_TestConection2.resx">
-      <DependentUpon>201701230954140_TestConection2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701231413427_IsThisNormai-MigrationTEst.resx">
-      <DependentUpon>201701231413427_IsThisNormai-MigrationTEst.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701231459084_DbChangesWithEmployeers.resx">
-      <DependentUpon>201701231459084_DbChangesWithEmployeers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701231501590_DbChangesWithEmployeers1.resx">
-      <DependentUpon>201701231501590_DbChangesWithEmployeers1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701231504292_DbChangesWithEmployeers2.resx">
-      <DependentUpon>201701231504292_DbChangesWithEmployeers2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701301856132_NewConections.resx">
+      <DependentUpon>201701301856132_NewConections.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 
 
 namespace GetShip.Models
@@ -8,8 +9,8 @@ namespace GetShip.Models
     public class ApplicationUser : IdentityUser
     {
         public int Age { get; set; }
-        public Profesion Profesion { get; set; }
-        public virtual Employee Employee { get; set; }
+        public string Role { get; set; }
+        public virtual Company Company { get; set; }
 
     }
 
@@ -19,6 +20,16 @@ namespace GetShip.Models
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            //modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            //modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasOptional(s => s.Company);
         }
     }
 }

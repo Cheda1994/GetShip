@@ -7,13 +7,13 @@ namespace GetShip.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class AddRolesToRoleManager : IMigrationMetadata
+    public sealed partial class JustTest : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddRolesToRoleManager));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(JustTest));
         
         string IMigrationMetadata.Id
         {
-            get { return "201701211925065_AddRolesToRoleManager"; }
+            get { return "201701202051058_JustTest"; }
         }
         
         string IMigrationMetadata.Source

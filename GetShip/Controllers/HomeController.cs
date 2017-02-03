@@ -24,9 +24,8 @@ namespace GetShip.Controllers
         }
         public ActionResult Index()
         {
-            Test();
-            var emp = new EmployeeContext();            
-            return View(emp);
+
+            return View();
         }
 
         public ActionResult About()
@@ -43,13 +42,5 @@ namespace GetShip.Controllers
             return View();
         }
 
-        public static void Test()
-        {
-            var emp = new Employee();
-            var con = new EmployeeContext();
-            emp.Place = "sdsdsd";
-            con.Employeers.Add(emp);
-            con.SaveChanges();
-        }
     }
 }

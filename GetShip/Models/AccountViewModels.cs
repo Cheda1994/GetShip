@@ -13,7 +13,13 @@ namespace GetShip.Models
     public class Users
     {
         ApplicationDbContext db = new ApplicationDbContext();
-       public ApplicationUser User(string id)
+        public ApplicationUser Current_User()
+        {
+            string curentUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            var user = GetUser(curentUserId);
+            return user;
+        }
+       public ApplicationUser GetUser(string id)
        {  
            var user = db.Users.Find(id);
            return user;
@@ -60,7 +66,8 @@ namespace GetShip.Models
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
-
+        [Display(Name = "Role")]
+        public string Role { get; set; }
         [Required]
         [Display(Name="Age")]
         public int Age { get; set; }
