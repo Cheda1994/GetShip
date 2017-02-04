@@ -40,7 +40,7 @@ namespace GetShip.Controllers
             Company comp = new Company();
             comp.Name = "LDTStam";
             UserSystem company = new UserSystem();
-            var result = company.CreateCompany(model, comp);
+            company.CreateCompany(model, comp);
             return View();
         }
 

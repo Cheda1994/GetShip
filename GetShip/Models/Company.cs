@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace GetShip.Models
 {
     public class Company
@@ -13,10 +14,10 @@ namespace GetShip.Models
         {
             Employes = new List<Employe>();
         }
-        [Key]
+        [Key, ForeignKey("ApplicationUser")]
         public string Id { get; set; }
         public string Name { get; set; }
-        [Required]
+        //[Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual ICollection<Employe> Employes { get; set; }
     }

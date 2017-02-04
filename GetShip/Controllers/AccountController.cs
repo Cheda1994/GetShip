@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using GetShip.Models;
+using System.Diagnostics;
 
 namespace GetShip.Controllers
 {
@@ -90,17 +91,15 @@ namespace GetShip.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async virtual Task<string> Register(RegisterViewModel model)
+        public ApplicationUser Register(RegisterViewModel model)
         {
             //ApplicationUser user;
             //if (ModelState.IsValid)
             //{
                 var context = new ApplicationDbContext();
-                var user = new ApplicationUser() { UserName = model.UserName , Age = model.Age, Role = model.Role };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                Users created = new Users();
-                var createdUser = created.GetUser(user.Id);
-                return user.Id;
+                var user = new ApplicationUser() { UserName = model.UserName , Age = model.Age, Role = model.Role , Company = model.Company};
+                var result = UserManager.Create(user, model.Password);  
+                return user;
             //}
             //else 
             //{

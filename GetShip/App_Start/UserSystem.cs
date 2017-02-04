@@ -12,17 +12,15 @@ namespace GetShip.App_Start
 {
     public class UserSystem  : AccountController
     {
-        public string CreateCompany(RegisterViewModel model,Company company)
+        public void CreateCompany(RegisterViewModel model,Company company)
         {           
-            var reg = Register(model);
-            
-            CompanyContext context = new CompanyContext();
-            Users user = new Users();
-            user.GetUser(reg.Result);
-            company.ApplicationUser = user.GetUser(reg.Result);
-            context.Companies.Add(company);
-            context.SaveChanges();
-            return reg.Result;
+            var user = Register(model);
+            //ApplicationDbContext appCont = new ApplicationDbContext();
+            //var cur_user = appCont.Users.Find(user.Id);
+            //company.Name = "NewText11";
+            //cur_user.Company = company;
+            //appCont.Entry(cur_user).State = EntityState.Modified;
+            //appCont.SaveChanges();
         }
 
         public static bool CreateEmploye()

@@ -1,5 +1,6 @@
 ﻿@model GetShip.Models.RegisterViewModel
 
+
 @using (Html.BeginForm("NewCompany", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
@@ -19,11 +20,12 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Role, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.DropDownListFor(m => m.Role, new SelectList(new string[] { "Company", "Employe" }), (new { @class = "form-control" }))
         </div>
     </div>
+
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -34,6 +36,14 @@
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <h2>New Company</h2>
+    @Html.HiddenFor(m => m.Company.ApplicationUser );
+        <div class="form-group">
+        @Html.LabelFor(m => m.Company.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Company.Name , new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

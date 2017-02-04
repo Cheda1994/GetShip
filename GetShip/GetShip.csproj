@@ -166,9 +166,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701301856132_NewConections.cs" />
-    <Compile Include="Migrations\201701301856132_NewConections.Designer.cs">
-      <DependentUpon>201701301856132_NewConections.cs</DependentUpon>
+    <Compile Include="Migrations\201702041055385_MigrationAfterPull.cs" />
+    <Compile Include="Migrations\201702041055385_MigrationAfterPull.Designer.cs">
+      <DependentUpon>201702041055385_MigrationAfterPull.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -244,8 +244,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701301856132_NewConections.resx">
-      <DependentUpon>201701301856132_NewConections.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702041055385_MigrationAfterPull.resx">
+      <DependentUpon>201702041055385_MigrationAfterPull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
