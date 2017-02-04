@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity.EntityFramework;
+namespace GetShip.Models
+{
+    public class Company
+    {
+        public Company()
+        {
+            Employes = new List<Employe>();
+        }
+        [Key]
+        public string Id { get; set; }
+        public string Name { get; set; }
+        [Required]
+        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual ICollection<Employe> Employes { get; set; }
+    }
+
+    public class CompanyContext : IdentityDbContext
+    {
+
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Employe> Employes { get; set; }
+
+
+    }
+}
