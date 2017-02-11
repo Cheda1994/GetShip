@@ -22,8 +22,7 @@ namespace GetShip.Controllers
 
         public ActionResult MyOffice()
         {
-            Users user = new Users();
-            var currentUser = user.Current_User();
+            var currentUser = Users.Current_User();
             Company comp = currentUser.Company;
             return View(comp);
         }

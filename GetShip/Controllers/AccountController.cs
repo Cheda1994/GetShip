@@ -76,8 +76,7 @@ namespace GetShip.Controllers
 
         public ActionResult AddCompany()
         {
-            Users user = new Users();
-            ApplicationUser current_user = user.GetUser("b828ea2f-513c-4726-b3d7-da5ea5222831");
+            ApplicationUser current_user = Users.GetUser("b828ea2f-513c-4726-b3d7-da5ea5222831");
             CompanyContext context = new CompanyContext();
             Company comp = new Company();
             comp.ApplicationUser.Id = current_user.Id;
@@ -99,19 +98,25 @@ namespace GetShip.Controllers
                 var context = new ApplicationDbContext();
                 var dbCompamy = new CompanyContext();
                 var user = new ApplicationUser() { UserName = model.UserName , Age = model.Age, Role = model.Role };
-                var result = UserManager.Create(user, model.Password);
+             
                 switch (model.Role)
                 {
                     case "Company":
-                        var x = context.Users.Find(user.Id);
-                        Company comp = new Company() ;
-                        x.Company = comp;
-                        context.SaveChanges();
+                        user.Company = model.Company;
                         break;
                     case "Employe":
-                        user.Employe = model.Employe;
+                        if (Users.Current_User().Role == "Company")
+                        { 
+                            user.Employe = model.Employe;
+
+                        }
+                        else
+                        {
+                            user = null;
+                        }
                         break;
                 }
+                var result = UserManager.Create(user, model.Password);
 
                 return (bool)result.Succeeded;
             }
