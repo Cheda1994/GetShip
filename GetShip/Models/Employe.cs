@@ -9,11 +9,22 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GetShip.Models
 {
+    public struct Wather
+    {
+        string weather;
+        int temperature;
+
+    }
     public class Employe
     {
-        public int Id { get; set; }
+        [Key ,ForeignKey("ApplicationUser")]
+        public string Id { get; set; }
         public string Name { get; set; }
-        public virtual ApplicationUser User { get; set; }
+        public ICollection<double> Selary { get; set; }
+        public string CurrentLocation { get; set; }
+        public Wather CurrendWather { get; set; }
+    [Required]
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 
     }

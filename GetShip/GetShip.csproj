@@ -97,6 +97,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Vereyon.Web.FlashMessage">
+      <HintPath>..\packages\Vereyon.Web.FlashMessage.1.0.1\lib\net40\Vereyon.Web.FlashMessage.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -162,13 +165,22 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SuperUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702041055385_MigrationAfterPull.cs" />
-    <Compile Include="Migrations\201702041055385_MigrationAfterPull.Designer.cs">
-      <DependentUpon>201702041055385_MigrationAfterPull.cs</DependentUpon>
+    <Compile Include="Migrations\201702101320050_Test.cs" />
+    <Compile Include="Migrations\201702101320050_Test.Designer.cs">
+      <DependentUpon>201702101320050_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702101357583_Test1.cs" />
+    <Compile Include="Migrations\201702101357583_Test1.Designer.cs">
+      <DependentUpon>201702101357583_Test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702101449430_Test2.cs" />
+    <Compile Include="Migrations\201702101449430_Test2.Designer.cs">
+      <DependentUpon>201702101449430_Test2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -230,8 +242,11 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Company\MyOffice.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
-    <Content Include="Views\Company\NewCompany.cshtml" />
+    <Content Include="Views\SuperUser\NewCompany.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\SuperUser\Index.cshtml" />
+    <Content Include="Views\SuperUser\AllCompanies.cshtml" />
+    <Content Include="Views\SuperUser\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -244,8 +259,14 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702041055385_MigrationAfterPull.resx">
-      <DependentUpon>201702041055385_MigrationAfterPull.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702101320050_Test.resx">
+      <DependentUpon>201702101320050_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702101357583_Test1.resx">
+      <DependentUpon>201702101357583_Test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702101449430_Test2.resx">
+      <DependentUpon>201702101449430_Test2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

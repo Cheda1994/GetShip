@@ -7,26 +7,22 @@ using GetShip.Controllers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using Vereyon.Web;
 
 namespace GetShip.App_Start
 {
     public class UserSystem  : AccountController
     {
-        public void CreateCompany(RegisterViewModel model,Company company)
-        {           
-            var user = Register(model);
-            //ApplicationDbContext appCont = new ApplicationDbContext();
-            //var cur_user = appCont.Users.Find(user.Id);
-            //company.Name = "NewText11";
-            //cur_user.Company = company;
-            //appCont.Entry(cur_user).State = EntityState.Modified;
-            //appCont.SaveChanges();
+        static UserSystem us = new UserSystem();
+        public static bool CreateCompany(RegisterViewModel model)
+        {
+            return (bool)us.Register(model);
+            
         }
 
-        public static bool CreateEmploye()
+        public static bool CreateEmploye(RegisterViewModel model , Company company)
         {
-            var user = new ApplicationUser();
-            return false;
+            return (bool)us.Register(model);
         }
 
 

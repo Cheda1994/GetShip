@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using GetShip.Models;
 using System.Diagnostics;
+using System.Data.Entity;
 
 namespace GetShip.Controllers
 {
@@ -91,21 +92,34 @@ namespace GetShip.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ApplicationUser Register(RegisterViewModel model)
+        public object Register(RegisterViewModel model)
         {
-            //ApplicationUser user;
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 var context = new ApplicationDbContext();
-                var user = new ApplicationUser() { UserName = model.UserName , Age = model.Age, Role = model.Role , Company = model.Company};
-                var result = UserManager.Create(user, model.Password);  
-                return user;
-            //}
-            //else 
-            //{
-            //    Exception ex = new ArgumentNullException();
-            //    return ex;
-            //}
+                var dbCompamy = new CompanyContext();
+                var user = new ApplicationUser() { UserName = model.UserName , Age = model.Age, Role = model.Role };
+                var result = UserManager.Create(user, model.Password);
+                switch (model.Role)
+                {
+                    case "Company":
+                        var x = context.Users.Find(user.Id);
+                        Company comp = new Company() ;
+                        x.Company = comp;
+                        context.SaveChanges();
+                        break;
+                    case "Employe":
+                        user.Employe = model.Employe;
+                        break;
+                }
+
+                return (bool)result.Succeeded;
+            }
+            else
+            {
+                Exception ex = new ArgumentNullException();
+                return (Exception)ex;
+            }
             }
 
         //
@@ -276,8 +290,6 @@ namespace GetShip.Controllers
             {
                 case "Employe":
                     Employe employ = new Employe();
-                    employ.User = user;
-                    context.Employes.Add(employ);
                     break;
                 case "Company":
                     Company comp = new Company();

@@ -11,6 +11,7 @@ namespace GetShip.Models
         public int Age { get; set; }
         public string Role { get; set; }
         public virtual Company Company { get; set; }
+        public virtual Employe Employe { get; set; }
 
     }
 

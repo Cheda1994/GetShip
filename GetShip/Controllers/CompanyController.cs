@@ -34,13 +34,14 @@ namespace GetShip.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         public ActionResult NewCompany(RegisterViewModel model)
         {
             Company comp = new Company();
             comp.Name = "LDTStam";
-            UserSystem company = new UserSystem();
-            company.CreateCompany(model, comp);
+            UserSystem.CreateCompany(model);
             return View();
         }
 

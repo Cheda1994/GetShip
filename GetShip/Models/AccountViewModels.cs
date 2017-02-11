@@ -75,6 +75,10 @@ namespace GetShip.Models
         [Display(Name = "Company")]
         public Company Company { get; set; }
 
+        [Display(Name = "Employe")]
+        public Employe Employe { get; set; }
+
+        
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]

@@ -17,7 +17,7 @@ namespace GetShip.Models
         [Key, ForeignKey("ApplicationUser")]
         public string Id { get; set; }
         public string Name { get; set; }
-        //[Required]
+        [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual ICollection<Employe> Employes { get; set; }
     }
