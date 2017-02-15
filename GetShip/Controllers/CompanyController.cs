@@ -12,7 +12,7 @@ namespace GetShip.Controllers
 {
     public class CompanyController : Controller
     {
-        private CompanyContext db = new CompanyContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         //
         // GET: /Company/
         public ActionResult Index()
@@ -33,15 +33,23 @@ namespace GetShip.Controllers
             return View();
         }
 
-
+        [HttpGet]
+        public ActionResult AddEmployee()
+        {
+            return View();
+        }
 
         [HttpPost]
-        public ActionResult NewCompany(RegisterViewModel model)
+        public ActionResult AddEmployee(RegisterEmployeeView model)
         {
-            Company comp = new Company();
-            comp.Name = "LDTStam";
-            UserSystem.CreateCompany(model);
+            UserSystem.CreateEmploye(model);
             return View();
+        }
+
+        public ActionResult Test()
+        {
+            UserSystem.CreationgEmpSemul();
+            return Index();
         }
 
         public ActionResult Edit(string id)

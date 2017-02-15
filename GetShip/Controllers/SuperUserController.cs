@@ -14,7 +14,7 @@ namespace GetShip.Controllers
     {
         //
         // GET: /SuperUser/
-        CompanyContext dbCompany = new CompanyContext(); 
+        ApplicationDbContext dbCompany = new ApplicationDbContext(); 
 
         public ActionResult Index()
         {
@@ -38,7 +38,7 @@ namespace GetShip.Controllers
             return View(allCompanies);
         }
         [HttpPost]
-        public ActionResult NewCompany(RegisterViewModel model)
+        public ActionResult NewCompany(RegisterCompanyView model)
         {
             Company comp = new Company();
             if((bool)UserSystem.CreateCompany(model))

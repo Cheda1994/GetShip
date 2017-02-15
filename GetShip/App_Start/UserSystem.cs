@@ -14,16 +14,34 @@ namespace GetShip.App_Start
     public class UserSystem  : AccountController
     {
         static UserSystem us = new UserSystem();
-        public static bool CreateCompany(RegisterViewModel model)
+        public static bool CreateCompany(RegisterCompanyView model)
         {
-            return (bool)us.Register(model);
+            RegisterEmployeeView v = new RegisterEmployeeView();
+            return (bool)us.Register(model, v);
             
         }
 
-        public static bool CreateEmploye(RegisterViewModel model , Company company)
+        public static bool CreateEmploye(RegisterEmployeeView model)
         {
-            return (bool)us.Register(model);
+            return (bool)us.Register(model , model);
         }
+
+
+
+        public static void CreationgEmpSemul()
+        {
+            Employe emp = new Employe();
+            ApplicationDbContext cdb = new ApplicationDbContext();
+            var user = Users.GetUser("13e0e9f0-2f0f-4851-9a43-8d1c9b5ceee0");
+            var comp = cdb.Companies.Last();
+            emp.Name = "Her";
+
+            cdb.Employees.Add(emp);
+            //comp.Employes.Add(emp);
+            cdb.Entry(comp).State = EntityState.Modified;
+            cdb.SaveChanges();
+        }
+
 
 
     }

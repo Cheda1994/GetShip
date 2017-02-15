@@ -3,7 +3,7 @@ namespace GetShip.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Test : DbMigration
+    public partial class ReBuild : DbMigration
     {
         public override void Up()
         {
@@ -23,7 +23,7 @@ namespace GetShip.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        UserName = c.String(nullable: false),
+                        UserName = c.String(),
                         PasswordHash = c.String(),
                         SecurityStamp = c.String(),
                         Age = c.Int(),
@@ -89,9 +89,7 @@ namespace GetShip.Migrations
                         Company_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.Id)
                 .ForeignKey("dbo.Companies", t => t.Company_Id)
-                .Index(t => t.Id)
                 .Index(t => t.Company_Id);
             
         }
@@ -100,14 +98,12 @@ namespace GetShip.Migrations
         {
             DropForeignKey("dbo.Employes", "Company_Id", "dbo.Companies");
             DropForeignKey("dbo.Companies", "Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Employes", "Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.Employes", new[] { "Company_Id" });
             DropIndex("dbo.Companies", new[] { "Id" });
-            DropIndex("dbo.Employes", new[] { "Id" });
             DropIndex("dbo.AspNetUserClaims", new[] { "User_Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });

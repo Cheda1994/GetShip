@@ -72,11 +72,7 @@ namespace GetShip.Models
         [Display(Name="Age")]
         public int Age { get; set; }
 
-        [Display(Name = "Company")]
-        public Company Company { get; set; }
 
-        [Display(Name = "Employe")]
-        public Employe Employe { get; set; }
 
         
         [Required]
@@ -89,5 +85,18 @@ namespace GetShip.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class RegisterCompanyView : RegisterViewModel
+    {
+        [Display(Name = "Company")]
+        public Company Company { get; set; }
+
+    }
+
+    public class RegisterEmployeeView : RegisterViewModel
+    {
+        [Display(Name = "Employe")]
+        public Employe Employe { get; set; }
     }
 }

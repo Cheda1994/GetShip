@@ -11,12 +11,15 @@ using Microsoft.Owin.Security;
 using GetShip.Models;
 using System.Diagnostics;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace GetShip.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        ApplicationDbContext context = new ApplicationDbContext();
+
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
@@ -77,7 +80,6 @@ namespace GetShip.Controllers
         public ActionResult AddCompany()
         {
             ApplicationUser current_user = Users.GetUser("b828ea2f-513c-4726-b3d7-da5ea5222831");
-            CompanyContext context = new CompanyContext();
             Company comp = new Company();
             comp.ApplicationUser.Id = current_user.Id;
             context.Companies.Add(comp);
@@ -91,34 +93,45 @@ namespace GetShip.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public object Register(RegisterViewModel model)
+        public object Register(object model , RegisterEmployeeView emp)
         {
             if (ModelState.IsValid)
             {
-                var context = new ApplicationDbContext();
-                var dbCompamy = new CompanyContext();
-                var user = new ApplicationUser() { UserName = model.UserName , Age = model.Age, Role = model.Role };
-             
-                switch (model.Role)
+                RegisterViewModel userModel = (RegisterViewModel)model;
+                var user = new ApplicationUser() { UserName = userModel.UserName, Age = userModel.Age, Role = userModel.Role };
+                IdentityResult result;
+                switch (userModel.Role)
                 {
                     case "Company":
-                        user.Company = model.Company;
+                        var companyModel = (RegisterCompanyView)model;
+                        user = CreatingCopmpany(companyModel , user);
+                        result = UserManager.Create(user, userModel.Password);
+                        //user.Company = companyModel.Company;
                         break;
                     case "Employe":
-                        if (Users.Current_User().Role == "Company")
-                        { 
-                            user.Employe = model.Employe;
-
+                        try { 
+                        Employe employ = emp.Employe;
+                        context.Employees.Add(employ);
+                        context.SaveChanges();
                         }
-                        else
+                        catch(DbEntityValidationException e)
                         {
-                            user = null;
+                            foreach (var valErrors in e.EntityValidationErrors)
+                            {
+                                foreach (var valError in valErrors.ValidationErrors)
+                                {
+                                    Debug.WriteLine("Prop:{0} , error:{1}", valError.PropertyName, valError.ErrorMessage);
+                                    Trace.TraceInformation("Prop:{0} , error:{1}", valError.PropertyName, valError.ErrorMessage);
+
+                                }
+                            }
                         }
+                        result = UserManager.Create(user, userModel.Password);
+                        //CreatingEmployee(employ);
                         break;
                 }
-                var result = UserManager.Create(user, model.Password);
 
-                return (bool)result.Succeeded;
+                return true;
             }
             else
             {
@@ -126,6 +139,22 @@ namespace GetShip.Controllers
                 return (Exception)ex;
             }
             }
+
+
+        private ApplicationUser CreatingCopmpany(RegisterCompanyView model , ApplicationUser user)
+        {
+            user.Company = model.Company;
+            return user;
+        }
+
+        private void CreatingEmployee(Employe employer)
+        {
+            Company company = Users.Current_User().Company;
+
+            company.Employes.Add(employer);
+            context.Entry<Company>(company).State = EntityState.Modified;
+            context.SaveChanges();
+        }
 
         //
         // POST: /Account/Disassociate
@@ -290,7 +319,6 @@ namespace GetShip.Controllers
 
         private void CreatingEmployeType(ApplicationUser user)
         {
-            CompanyContext context = new CompanyContext();
             switch(user.Role)
             {
                 case "Employe":

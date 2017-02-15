@@ -7,13 +7,13 @@ namespace GetShip.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class Test : IMigrationMetadata
+    public sealed partial class ReBuild : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Test));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ReBuild));
         
         string IMigrationMetadata.Id
         {
-            get { return "201702111626436_Test"; }
+            get { return "201702152014513_ReBuild"; }
         }
         
         string IMigrationMetadata.Source

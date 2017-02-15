@@ -22,12 +22,4 @@ namespace GetShip.Models
         public virtual ICollection<Employe> Employes { get; set; }
     }
 
-    public class CompanyContext : IdentityDbContext
-    {
-
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<Employe> Employes { get; set; }
-
-
-    }
 }
