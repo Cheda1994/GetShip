@@ -77,15 +77,6 @@ namespace GetShip.Controllers
         }
 
 
-        public ActionResult AddCompany()
-        {
-            ApplicationUser current_user = Users.GetUser("b828ea2f-513c-4726-b3d7-da5ea5222831");
-            Company comp = new Company();
-            comp.ApplicationUser.Id = current_user.Id;
-            context.Companies.Add(comp);
-            context.SaveChanges();
-            return View("Index");
-        }
 
 
         //
@@ -93,41 +84,29 @@ namespace GetShip.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public object Register(object model , RegisterEmployeeView emp)
+        public object Register(object model)
         {
             if (ModelState.IsValid)
             {
                 RegisterViewModel userModel = (RegisterViewModel)model;
                 var user = new ApplicationUser() { UserName = userModel.UserName, Age = userModel.Age, Role = userModel.Role };
-                IdentityResult result;
+                Task<IdentityResult> result;
                 switch (userModel.Role)
                 {
                     case "Company":
                         var companyModel = (RegisterCompanyView)model;
                         user = CreatingCopmpany(companyModel , user);
-                        result = UserManager.Create(user, userModel.Password);
+                        result = UserManager.CreateAsync(user, userModel.Password);
                         //user.Company = companyModel.Company;
                         break;
                     case "Employe":
-                        try { 
-                        Employe employ = emp.Employe;
+                        var modelEmpl = (RegisterEmployeeView)model;
+                        Employe employ = modelEmpl.Employe;
+                        employ.Id = user.Id;
+                        employ.Company = Users.Current_User(context).Company;
                         context.Employees.Add(employ);
                         context.SaveChanges();
-                        }
-                        catch(DbEntityValidationException e)
-                        {
-                            foreach (var valErrors in e.EntityValidationErrors)
-                            {
-                                foreach (var valError in valErrors.ValidationErrors)
-                                {
-                                    Debug.WriteLine("Prop:{0} , error:{1}", valError.PropertyName, valError.ErrorMessage);
-                                    Trace.TraceInformation("Prop:{0} , error:{1}", valError.PropertyName, valError.ErrorMessage);
-
-                                }
-                            }
-                        }
-                        result = UserManager.Create(user, userModel.Password);
-                        //CreatingEmployee(employ);
+                        result = UserManager.CreateAsync(user, userModel.Password);
                         break;
                 }
 
@@ -145,15 +124,6 @@ namespace GetShip.Controllers
         {
             user.Company = model.Company;
             return user;
-        }
-
-        private void CreatingEmployee(Employe employer)
-        {
-            Company company = Users.Current_User().Company;
-
-            company.Employes.Add(employer);
-            context.Entry<Company>(company).State = EntityState.Modified;
-            context.SaveChanges();
         }
 
         //

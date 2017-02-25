@@ -17,13 +17,13 @@ namespace GetShip.App_Start
         public static bool CreateCompany(RegisterCompanyView model)
         {
             RegisterEmployeeView v = new RegisterEmployeeView();
-            return (bool)us.Register(model, v);
+            return (bool)us.Register(model);
             
         }
 
         public static bool CreateEmploye(RegisterEmployeeView model)
         {
-            return (bool)us.Register(model , model);
+            return (bool)us.Register(model);
         }
 
 
@@ -32,7 +32,7 @@ namespace GetShip.App_Start
         {
             Employe emp = new Employe();
             ApplicationDbContext cdb = new ApplicationDbContext();
-            var user = Users.GetUser("13e0e9f0-2f0f-4851-9a43-8d1c9b5ceee0");
+            var user = Users.GetUser(cdb , "13e0e9f0-2f0f-4851-9a43-8d1c9b5ceee0");
             var comp = cdb.Companies.Last();
             emp.Name = "Her";
 

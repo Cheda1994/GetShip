@@ -22,7 +22,7 @@ namespace GetShip.Controllers
 
         public ActionResult MyOffice()
         {
-            var currentUser = Users.Current_User();
+            var currentUser = Users.Current_User(db);
             Company comp = currentUser.Company;
             return View(comp);
         }
@@ -42,14 +42,16 @@ namespace GetShip.Controllers
         [HttpPost]
         public ActionResult AddEmployee(RegisterEmployeeView model)
         {
+            model.Role = "Employe";
             UserSystem.CreateEmploye(model);
             return View();
         }
 
-        public ActionResult Test()
+        public ActionResult EmployList()
         {
-            UserSystem.CreationgEmpSemul();
-            return Index();
+            var currentCompamy = Users.Current_User(db).Company;
+            ICollection<Employe> currentCompanyEmpl = currentCompamy.Employes;
+            return View(currentCompanyEmpl);
         }
 
         public ActionResult Edit(string id)
