@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using GetShip.App_Start;
+
 namespace GetShip.Controllers
 {
     public class CompanyController : Controller

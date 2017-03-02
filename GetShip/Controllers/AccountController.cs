@@ -90,23 +90,24 @@ namespace GetShip.Controllers
             {
                 RegisterViewModel userModel = (RegisterViewModel)model;
                 var user = new ApplicationUser() { UserName = userModel.UserName, Age = userModel.Age, Role = userModel.Role };
-                Task<IdentityResult> result;
+                IdentityResult result;
                 switch (userModel.Role)
                 {
                     case "Company":
                         var companyModel = (RegisterCompanyView)model;
                         user = CreatingCopmpany(companyModel , user);
-                        result = UserManager.CreateAsync(user, userModel.Password);
+                        result = UserManager.Create(user, userModel.Password);
                         //user.Company = companyModel.Company;
                         break;
                     case "Employe":
                         var modelEmpl = (RegisterEmployeeView)model;
-                        Employe employ = modelEmpl.Employe;
-                        employ.Id = user.Id;
-                        employ.Company = Users.Current_User(context).Company;
-                        context.Employees.Add(employ);
+
+                        //employ.Company = Users.Current_User(context).Company;
+                        result = UserManager.Create(user, modelEmpl.Password);
+                        Employe empl = modelEmpl.Employe;
+                        empl.ApplicationUser = result;
+                        context.Employees.Add(empl);
                         context.SaveChanges();
-                        result = UserManager.CreateAsync(user, userModel.Password);
                         break;
                 }
 

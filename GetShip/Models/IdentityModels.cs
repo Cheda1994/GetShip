@@ -8,11 +8,10 @@ namespace GetShip.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-
         public int Age { get; set; }
         public string Role { get; set; }
         public virtual Company Company { get; set; }
-        //public virtual Employe Employe { get; set; }
+        public virtual Employe Employe { get; set; }
 
     }
 
@@ -23,7 +22,7 @@ namespace GetShip.Models
             : base("DefaultConnection")
         {
         }
-
+        public DbSet<Wather> Wathers { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Employe> Employees { get; set; }
 

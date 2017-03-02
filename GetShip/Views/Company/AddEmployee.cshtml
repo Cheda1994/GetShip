@@ -35,13 +35,27 @@
     </div>
 
     <h2>New Employee</h2>
-    @*@Html.TextBoxFor(m => m.Company.ApplicationUser);*@
         <div class="form-group">
         @Html.LabelFor(m => m.Employe, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Employe.Name, new { @class = "form-control" })
         </div>
     </div>
+    <h1>Wather</h1>
+            <div class="form-group">
+        @Html.LabelFor(m => m.Employe.CurrendWather.Temp, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Employe.CurrendWather.Temp, new { @class = "form-control" })
+        </div>
+    </div>
+            <div class="form-group">
+        @Html.LabelFor(m => m.Employe.CurrendWather.WatherStatus, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Employe.CurrendWather.WatherStatus, new SelectList(Enum.GetValues(typeof(GetShip.Models.WatherStatus))), new { @class = "form-control" })
+        </div>
+    </div>
+
+
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
