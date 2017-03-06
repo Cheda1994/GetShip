@@ -96,6 +96,10 @@ namespace GetShip.Models
 
     public class RegisterEmployeeView : RegisterViewModel
     {
+        //public RegisterEmployeeView()
+        //{
+        //    Employe = new Employe();
+        //}
         [Display(Name = "Employe")]
         public Employe Employe { get; set; }
     }

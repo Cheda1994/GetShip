@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using GetShip.App_Start;
+using System.Threading.Tasks;
 
 namespace GetShip.Controllers
 {
@@ -28,11 +29,6 @@ namespace GetShip.Controllers
             return View(comp);
         }
 
-
-        public ActionResult NewCompany()
-        {
-            return View();
-        }
 
         [HttpGet]
         public ActionResult AddEmployee()

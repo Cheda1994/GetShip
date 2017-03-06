@@ -170,9 +170,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703021434279_NewLife.cs" />
-    <Compile Include="Migrations\201703021434279_NewLife.Designer.cs">
-      <DependentUpon>201703021434279_NewLife.cs</DependentUpon>
+    <Compile Include="Migrations\201703021701105_Test.cs" />
+    <Compile Include="Migrations\201703021701105_Test.Designer.cs">
+      <DependentUpon>201703021701105_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -254,8 +254,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703021434279_NewLife.resx">
-      <DependentUpon>201703021434279_NewLife.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703021701105_Test.resx">
+      <DependentUpon>201703021701105_Test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

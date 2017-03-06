@@ -11,8 +11,8 @@ namespace GetShip.Models
 {
     public class Employe
     {
-        public Employe()
-        { }
+        //public Employe()
+        //{ }
         [Key, ForeignKey("ApplicationUser")]
         public string Id { get; set; }
         public string Name { get; set; }

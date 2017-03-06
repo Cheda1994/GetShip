@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using GetShip.Models;
 using System.Diagnostics;
+using System.Data.SqlClient;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 
@@ -97,17 +98,12 @@ namespace GetShip.Controllers
                         var companyModel = (RegisterCompanyView)model;
                         user = CreatingCopmpany(companyModel , user);
                         result = UserManager.Create(user, userModel.Password);
-                        //user.Company = companyModel.Company;
                         break;
                     case "Employe":
                         var modelEmpl = (RegisterEmployeeView)model;
-
-                        //employ.Company = Users.Current_User(context).Company;
+                        user.Employe = modelEmpl.Employe;
                         result = UserManager.Create(user, modelEmpl.Password);
-                        Employe empl = modelEmpl.Employe;
-                        empl.ApplicationUser = result;
-                        context.Employees.Add(empl);
-                        context.SaveChanges();
+                        CreatingEmploye(user);
                         break;
                 }
 
@@ -125,6 +121,15 @@ namespace GetShip.Controllers
         {
             user.Company = model.Company;
             return user;
+        }
+
+        private void CreatingEmploye(ApplicationUser user)
+        {
+            Company comp = Users.Current_User(context).Company;
+            Employe empl = context.Employees.Find(user.Id);
+            comp.Employes.Add(empl);
+            context.Entry(comp).State = EntityState.Modified;
+            context.SaveChanges();
         }
 
         //

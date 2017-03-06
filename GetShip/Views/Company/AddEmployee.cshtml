@@ -1,6 +1,8 @@
 ﻿@model GetShip.Models.RegisterEmployeeView
 @using Vereyon.Web;
-
+@{
+    
+}
 <h1>@Html.RenderFlashMessages()</h1>
 @using (Html.BeginForm("AddEmployee", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -36,7 +38,7 @@
 
     <h2>New Employee</h2>
         <div class="form-group">
-        @Html.LabelFor(m => m.Employe, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Employe.Name , new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Employe.Name, new { @class = "form-control" })
         </div>
