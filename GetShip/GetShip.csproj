@@ -242,6 +242,7 @@
     <Content Include="Views\SuperUser\Details.cshtml" />
     <Content Include="Views\Company\AddEmployee.cshtml" />
     <Content Include="Views\Company\EmployList.cshtml" />
+    <Content Include="Views\Company\DetailsEmploye.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

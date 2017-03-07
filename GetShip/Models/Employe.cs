@@ -11,12 +11,14 @@ namespace GetShip.Models
 {
     public class Employe
     {
-        //public Employe()
-        //{ }
+        public Employe()
+        {
+            Selary = new List<Selary>();
+        }
         [Key, ForeignKey("ApplicationUser")]
         public string Id { get; set; }
         public string Name { get; set; }
-        public ICollection<double> Selary { get; set; }
+        public ICollection<Selary> Selary { get; set; }
         public string CurrentLocation { get; set; }
         public Wather CurrendWather { get; set; }
         public virtual Company Company { get; set; }
@@ -24,4 +26,11 @@ namespace GetShip.Models
         public virtual ApplicationUser ApplicationUser { get; set; }
     }
 
+    public class Selary
+    {
+        public string Id { get; set; }
+        public DateTime Date { get; set; }
+        public double Count { get; set; }
+
+    }
     }

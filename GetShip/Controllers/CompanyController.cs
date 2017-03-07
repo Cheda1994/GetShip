@@ -29,7 +29,11 @@ namespace GetShip.Controllers
             return View(comp);
         }
 
-
+        public async Task<ActionResult> DetailsEmploye(string id)
+        {
+            Employe empl = db.Employees.Find(id);
+            return View(empl);
+        }
         [HttpGet]
         public ActionResult AddEmployee()
         {

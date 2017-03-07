@@ -39,5 +39,6 @@ namespace GetShip.Models
             modelBuilder.Entity<Company>()
                 .HasMany<Employe>(e => e.Employes);
         }
+
     }
 }
