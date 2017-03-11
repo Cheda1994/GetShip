@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace GetShip.Controllers
 {
+    [MyAuthorizeAttribute]
     public class CompanyController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -47,7 +48,7 @@ namespace GetShip.Controllers
             UserSystem.CreateEmploye(model);
             return View();
         }
-
+     
         public ActionResult EmployList()
         {
             var currentCompamy = Users.Current_User(db).Company;
