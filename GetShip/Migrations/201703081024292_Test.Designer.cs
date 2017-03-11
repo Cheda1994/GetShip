@@ -13,7 +13,7 @@ namespace GetShip.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201703021701105_Test"; }
+            get { return "201703081024292_Test"; }
         }
         
         string IMigrationMetadata.Source

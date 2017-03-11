@@ -10,6 +10,7 @@ namespace GetShip.Controllers
 {
     public class UserController : Controller 
     {
+        ApplicationDbContext context = new ApplicationDbContext();
         //
         // GET: /User/
         public async Task<ActionResult> Index()
@@ -19,5 +20,10 @@ namespace GetShip.Controllers
             return View(current_user);
         }
 
+        public async Task<ActionResult> EmployeSelary(int id)
+        {
+
+            return View();
+        }
 	}
 }

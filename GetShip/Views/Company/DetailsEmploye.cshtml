@@ -40,7 +40,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Selary info", "EmployeSelary", new { id = Model.Id }) |
+    @Html.ActionLink("Selary info", "EmployeSelary", "User",new { id = Model.Id } , null) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
