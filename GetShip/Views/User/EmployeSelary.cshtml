@@ -1,1 +1,7 @@
-﻿
+﻿@model GetShip.Models.Employe
+
+@foreach (var item in @Model.Selary)
+	{
+		@item.Count
+	}
+<h4>@Html.ActionLink("Give salery", "AddSelary", "Company", new { id = @Model }, null)</h4>

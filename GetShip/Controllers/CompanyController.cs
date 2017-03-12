@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GetShip.Controllers
 {
-    [MyAuthorizeAttribute]
+    [UserFiltingSystem("Company")]
     public class CompanyController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -56,6 +56,10 @@ namespace GetShip.Controllers
             return View(currentCompanyEmpl);
         }
 
+        public ActionResult AddSelary(Employe empl)
+        {
+            return View();
+        }
         public ActionResult Edit(string id)
         {
             var company = db.Companies.Find(id);

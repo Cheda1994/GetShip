@@ -12,8 +12,13 @@ namespace GetShip
         }
     }
 
-    public class MyAuthorizeAttribute : FilterAttribute, IAuthorizationFilter
+    public class UserFiltingSystem : FilterAttribute, IAuthorizationFilter
     {
+        public string conditionRole;
+        public UserFiltingSystem(string role)
+        {
+            conditionRole = role;
+        }
         public void OnAuthorization(AuthorizationContext filterContext)
         {
             var user = GetShip.Models.Users.Current_User();
@@ -34,7 +39,7 @@ namespace GetShip
         {
             // You know what to do here => go hit your RavenDb
             // and perform the necessary checks
-            return user.Role =="Company";
+            return user.Role == conditionRole;
         }
     }
 

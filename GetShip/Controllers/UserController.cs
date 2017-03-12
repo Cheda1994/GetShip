@@ -20,10 +20,11 @@ namespace GetShip.Controllers
             return View(current_user);
         }
 
-        public async Task<ActionResult> EmployeSelary(int id)
+        public async Task<ActionResult> EmployeSelary(string id)
         {
-
-            return View();
+            var user = Users.GetUser(context, id);
+            Employe userEmploye = user.Employe;
+            return View(userEmploye);
         }
 	}
 }
