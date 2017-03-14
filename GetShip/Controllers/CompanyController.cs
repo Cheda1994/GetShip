@@ -23,6 +23,31 @@ namespace GetShip.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult AddSelary(string id)
+        {
+            try 
+	        {	        
+            ApplicationUser empl = db.Users.Find("b53e06bb-c5fb-44e9-8824-e7e85cf6174a");
+            empl.Employe.Selary.Add(new Selary() {Id="as", Count = 3, Date = DateTime.Now});
+            db.Entry(empl).State = EntityState.Modified;
+            db.SaveChanges();
+            }
+             catch(DbEntityValidationException dbEx)
+            {
+                foreach (var valErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var valError in valErrors.ValidationErrors)
+                    {
+                        Debug.WriteLine("Prop:{0} , error:{1}", valError.PropertyName, valError.ErrorMessage);
+                        Trace.TraceInformation("Prop:{0} , error:{1}", valError.PropertyName, valError.ErrorMessage);
+                        
+                    }
+                }
+                return View("Index");
+            }
+            return Index();
+        }
         public ActionResult MyOffice()
         {
             var currentUser = Users.Current_User(db);

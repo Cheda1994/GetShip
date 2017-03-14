@@ -15,8 +15,14 @@ namespace GetShip
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{firstArrg}",
+                defaults: new { controller = "Home", action = "Index", firstArrg = UrlParameter.Optional }
+                );
+                            
+            routes.MapRoute(
+                name: "Second",
+                url: "{controller}/{action}/{firstArrg}/{secondArrg}",
+                defaults: new { controller = "Home", action = "Index", firstArrg = UrlParameter.Optional , secondArrg = UrlParameter.Optional}
             );
         }
     }

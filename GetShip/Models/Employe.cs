@@ -29,7 +29,7 @@ namespace GetShip.Models
     public class Selary
     {
         public string Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
         public double Count { get; set; }
 
     }
