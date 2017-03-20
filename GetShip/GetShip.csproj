@@ -170,13 +170,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703110911192_Test.cs" />
-    <Compile Include="Migrations\201703110911192_Test.Designer.cs">
-      <DependentUpon>201703110911192_Test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703131739398_Teste.cs" />
-    <Compile Include="Migrations\201703131739398_Teste.Designer.cs">
-      <DependentUpon>201703131739398_Teste.cs</DependentUpon>
+    <Compile Include="Migrations\201703171622214_Test.cs" />
+    <Compile Include="Migrations\201703171622214_Test.Designer.cs">
+      <DependentUpon>201703171622214_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -249,6 +245,7 @@
     <Content Include="Views\Company\DetailsEmploye.cshtml" />
     <Content Include="Views\User\EmployeSelary.cshtml" />
     <Content Include="Views\Company\AddSelary.cshtml" />
+    <Content Include="Views\Company\_AddSelary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -261,11 +258,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703110911192_Test.resx">
-      <DependentUpon>201703110911192_Test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703131739398_Teste.resx">
-      <DependentUpon>201703131739398_Teste.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703171622214_Test.resx">
+      <DependentUpon>201703171622214_Test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

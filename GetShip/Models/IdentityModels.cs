@@ -25,6 +25,7 @@ namespace GetShip.Models
         public DbSet<Wather> Wathers { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Employe> Employees { get; set; }
+        public DbSet<Selary> Selarys { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -35,6 +36,10 @@ namespace GetShip.Models
 
             modelBuilder.Entity<ApplicationUser>()
                 .HasOptional(s => s.Company);
+
+            modelBuilder.Entity<Selary>()
+                .HasRequired<Employe>(e => e.Employe)
+                .WithMany(s => s.Selarys);
 
             modelBuilder.Entity<Company>()
                 .HasMany<Employe>(e => e.Employes);

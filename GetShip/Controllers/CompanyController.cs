@@ -24,13 +24,18 @@ namespace GetShip.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddSelary(string id)
+        public ActionResult AddSelary(string id, int selaryCount)
         {
             try 
-	        {	        
-            ApplicationUser empl = db.Users.Find("b53e06bb-c5fb-44e9-8824-e7e85cf6174a");
-            empl.Employe.Selary.Add(new Selary() {Id="as", Count = 3, Date = DateTime.Now});
-            db.Entry(empl).State = EntityState.Modified;
+	        {
+            Selary selary = new Selary();
+            selary.Count = selaryCount;
+            selary.Date = DateTime.Now;
+            //selary.Id = ((selaryCount+11)*DateTime.Now.Ticks).ToString();
+            Employe empl = db.Users.Find(id).Employe;
+            selary.Employe = empl;
+            empl.Selarys.Add(selary);
+            //db.Entry(empl).State = EntityState.Modified;
             db.SaveChanges();
             }
              catch(DbEntityValidationException dbEx)

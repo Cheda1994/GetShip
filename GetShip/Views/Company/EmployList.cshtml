@@ -29,6 +29,12 @@
             @Html.DisplayFor(modelItem => item.CurrentLocation)
         </td>
         <td>
+            @foreach(var i in item.Selarys)
+            {
+                @i.Employe.Id
+            }
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "DetailsEmploye", new { id = item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })

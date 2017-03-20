@@ -34,13 +34,17 @@
             @Html.DisplayFor(model => model.CurrentLocation)
         </dd>
         <dd>
-            @Html.DisplayFor(model => model.Selary)
+            @Html.DisplayFor(model => model.Selarys)
         </dd>
 
     </dl>
 </div>
+@foreach(var s in @Model.Selarys)
+{
+    @s
+}
 <p>
-    @Html.ActionLink("Selary info", "EmployeSelary", "User",new { id = Model.Id } , null) |
+    @Html.ActionLink("Selary info", "EmployeSelary", "User", new { id = Model.Id } , null) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
