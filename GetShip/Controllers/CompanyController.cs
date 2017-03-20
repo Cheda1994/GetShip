@@ -9,6 +9,7 @@ using System.Data.Entity.Validation;
 using System.Diagnostics;
 using GetShip.App_Start;
 using System.Threading.Tasks;
+using Vereyon.Web;
 
 namespace GetShip.Controllers
 {
@@ -75,7 +76,14 @@ namespace GetShip.Controllers
         public ActionResult AddEmployee(RegisterEmployeeView model)
         {
             model.Role = "Employe";
-            UserSystem.CreateEmploye(model);
+            if(UserSystem.CreateEmploye(model))
+            {
+                FlashMessage.Confirmation("The employe " + model.UserName + " was created saccesful");
+            }
+            else
+            {
+                FlashMessage.Danger("The employe " + model.UserName + " was created saccesful");
+            }
             return View();
         }
      

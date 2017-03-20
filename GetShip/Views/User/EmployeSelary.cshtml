@@ -1,34 +1,43 @@
 ﻿@model GetShip.Models.Employe
 
-@*@Html.Partial("~/Views/Company/_AddSelary.cshtml")*@
 
-
-
-
-@foreach (GetShip.Models.Selary item in @Model.Selarys)
-	{
-		<p>@item.Count</p>
-	}
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-@using (Html.BeginForm("AddSelary", "Company", new { id = @Model.Id }, FormMethod.Post))
+<table class="table table-hover" style="width:50%">
+    <thead>
+        <tr>
+            <th>@Html.DisplayName("Date")</th>
+            <th>@Html.DisplayName("Count")</th>
+        </tr>
+    </thead>
+        @foreach (GetShip.Models.Selary item in @Model.Selarys)
 {
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <tbody>
+        <tr>
+            <td>@Html.DisplayTextFor(m => item.Date)</td>
+            <td>@Html.DisplayTextFor(m => item.Count)</td>
+        </tr>
+    </tbody>
+}
+</table>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        @using (Html.BeginForm("AddSelary", "Company", new { id = @Model.Id }, FormMethod.Post))
+        {
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
 
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    Count:<p class="modal-open">@Html.TextBox("selaryCount")</p>
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" value="Text">
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            Count:<p class="modal-open">@Html.TextBox("selaryCount")</p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Text">
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-        </div>
-    </div>
-}
+        }

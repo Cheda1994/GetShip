@@ -29,7 +29,9 @@ namespace GetShip.Models
     public class Selary
     {
         public int Id { get; set; }
+        [Display(Name = "Date of pay")]
         public DateTime? Date { get; set; }
+        [Display(Name = "Count")]
         public double Count { get; set; }
         [Required]
         public Employe Employe { get; set; }

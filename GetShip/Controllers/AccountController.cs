@@ -111,8 +111,8 @@ namespace GetShip.Controllers
             }
             else
             {
-                Exception ex = new ArgumentNullException();
-                return (Exception)ex;
+
+                return false;
             }
             }
 
