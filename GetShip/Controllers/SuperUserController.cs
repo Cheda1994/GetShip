@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Diagnostics;
 using Vereyon.Web;
 
 namespace GetShip.Controllers
@@ -14,16 +15,30 @@ namespace GetShip.Controllers
     {
         //
         // GET: /SuperUser/
-        ApplicationDbContext dbCompany = new ApplicationDbContext(); 
+        ApplicationDbContext db = new ApplicationDbContext(); 
 
         public ActionResult Index()
         {
             return View();
         }
 
+        public ActionResult AllEmployee(int page)
+        {
+            if(page != null)
+            {
+                page = 1;
+            }
+            var skypPoint = (-1 + page) * 5;
+            var employes = (from empl
+                            in db.Employees
+                            select empl).ToList();
+            IEnumerable<Employe> filtedEmployes = employes.Skip(skypPoint).Take(10);
+            return View(filtedEmployes);
+        }
+
         public ActionResult Details(string id)
         {
-            Company getCompany = dbCompany.Companies.Find(id);
+            Company getCompany = db.Companies.Find(id);
             return View(getCompany);
         }
         [HttpGet]
@@ -34,7 +49,7 @@ namespace GetShip.Controllers
 
         public ActionResult AllCompanies()
         {
-            DbSet<Company> allCompanies = dbCompany.Companies;
+            DbSet<Company> allCompanies = db.Companies;
             return View(allCompanies);
         }
         [HttpPost]

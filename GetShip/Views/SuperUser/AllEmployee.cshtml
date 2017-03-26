@@ -1,7 +1,16 @@
-﻿@model IEnumerable<GetShip.Models.Company>
+﻿@model IEnumerable<GetShip.Models.Employe>
+
+@{
+    ViewBag.Title = "AllEmployee";
+}
+
+<h2>AllEmployee</h2>
 
 <p>
-    <h3>@Html.ActionLink("Create New", "NewCompany")</h3> 
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @ViewBag.Clock
 </p>
 <table class="table">
     <tr>
@@ -11,16 +20,22 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentLocation)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in @Model) {
+@foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentLocation)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

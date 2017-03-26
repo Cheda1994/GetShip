@@ -24,6 +24,8 @@ namespace GetShip.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         public ActionResult AddSelary(string id, int selaryCount)
         {
@@ -82,7 +84,7 @@ namespace GetShip.Controllers
             }
             else
             {
-                FlashMessage.Danger("The employe " + model.UserName + " was created saccesful");
+                FlashMessage.Danger("The employe " + model.UserName + " was no created");
             }
             return View();
         }

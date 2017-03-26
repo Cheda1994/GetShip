@@ -246,6 +246,7 @@
     <Content Include="Views\User\EmployeSelary.cshtml" />
     <Content Include="Views\Company\AddSelary.cshtml" />
     <Content Include="Views\Company\_AddSelary.cshtml" />
+    <Content Include="Views\SuperUser\AllEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
