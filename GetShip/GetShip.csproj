@@ -164,20 +164,22 @@
     <Compile Include="App_Start\UserSystem.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\GaleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SuperUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703201252394_Zero.cs" />
-    <Compile Include="Migrations\201703201252394_Zero.Designer.cs">
-      <DependentUpon>201703201252394_Zero.cs</DependentUpon>
+    <Compile Include="Migrations\201703261744255_NewM.cs" />
+    <Compile Include="Migrations\201703261744255_NewM.Designer.cs">
+      <DependentUpon>201703261744255_NewM.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Employe.cs" />
+    <Compile Include="Models\Galery.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Profesion.cs" />
     <Compile Include="Models\Wather.cs" />
@@ -247,6 +249,7 @@
     <Content Include="Views\Company\AddSelary.cshtml" />
     <Content Include="Views\Company\_AddSelary.cshtml" />
     <Content Include="Views\SuperUser\AllEmployee.cshtml" />
+    <Content Include="Views\Galery\AddImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -259,8 +262,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703201252394_Zero.resx">
-      <DependentUpon>201703201252394_Zero.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703261744255_NewM.resx">
+      <DependentUpon>201703261744255_NewM.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,7 +3,7 @@ namespace GetShip.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Zero : DbMigration
+    public partial class NewM : DbMigration
     {
         public override void Up()
         {
@@ -120,6 +120,18 @@ namespace GetShip.Migrations
                 .ForeignKey("dbo.Employes", t => t.Employe_Id, cascadeDelete: true)
                 .Index(t => t.Employe_Id);
             
+            CreateTable(
+                "dbo.Galeries",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ImageData = c.Binary(),
+                        DateUploaded = c.DateTime(nullable: false),
+                        Description = c.String(),
+                        Type = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
@@ -142,6 +154,7 @@ namespace GetShip.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
+            DropTable("dbo.Galeries");
             DropTable("dbo.Selaries");
             DropTable("dbo.Wathers");
             DropTable("dbo.Employes");

@@ -1,0 +1,7 @@
+﻿@using (Html.BeginForm("Creating", "Galery", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+{
+        <label for="file">Upload Image:</label> 
+    <input type="file" name="uploadImages" class="input-files" />
+    <input type="submit" value="Upload" class="submit" /> 
+}

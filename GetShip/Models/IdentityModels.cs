@@ -26,7 +26,7 @@ namespace GetShip.Models
         public DbSet<Company> Companies { get; set; }
         public DbSet<Employe> Employees { get; set; }
         public DbSet<Selary> Selarys { get; set; }
-
+        public DbSet<Galery> Galerys { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
