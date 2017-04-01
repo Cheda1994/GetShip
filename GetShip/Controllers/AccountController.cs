@@ -40,6 +40,21 @@ namespace GetShip.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            Task.Run(() =>
+            {
+                for (int x = 0; x < 100; x++)
+                {
+                    Debug.WriteLine(Task.CurrentId);
+                }
+            });
+            Task.Run(() =>
+            {
+                for (int x = 0; x < 100; x++)
+                {
+                    Debug.WriteLine(Task.CurrentId);
+                }
+            });
+            GetShip.App_Start.UserSystem.Test2();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -106,7 +121,6 @@ namespace GetShip.Controllers
                         CreatingEmploye(user);
                         break;
                 }
-
                 return true;
             }
             else
