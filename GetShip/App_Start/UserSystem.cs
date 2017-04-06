@@ -17,16 +17,16 @@ namespace GetShip.App_Start
     public class UserSystem  : AccountController
     {
         static UserSystem us = new UserSystem();
-        public static bool CreateCompany(RegisterCompanyView model)
+        public static bool CreateCompany(RegisterCompanyView model, HttpPostedFileBase file)
         {
             RegisterEmployeeView v = new RegisterEmployeeView();
-            return (bool)us.Register(model);
+            return (bool)us.Register(model , file);
             
         }
 
-        public static bool CreateEmploye(RegisterEmployeeView model)
+        public static bool CreateEmploye(RegisterEmployeeView model , HttpPostedFileBase file)
         {
-            return (bool)us.Register(model);
+            return (bool)us.Register(model , file);
         }
 
 

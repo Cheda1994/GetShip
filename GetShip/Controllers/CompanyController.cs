@@ -65,7 +65,7 @@ namespace GetShip.Controllers
 
         public async Task<ActionResult> DetailsEmploye(string id)
         {
-            Employe empl = db.Employees.Find(id);
+            Employe empl = await db.Employees.FindAsync(id);
             return View(empl);
         }
         [HttpGet]
@@ -75,10 +75,10 @@ namespace GetShip.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEmployee(RegisterEmployeeView model)
+        public ActionResult AddEmployee(RegisterEmployeeView model, HttpPostedFileBase file)
         {
             model.Role = "Employe";
-            if(UserSystem.CreateEmploye(model))
+            if(UserSystem.CreateEmploye(model , file))
             {
                 FlashMessage.Confirmation("The employe " + model.UserName + " was created saccesful");
             }

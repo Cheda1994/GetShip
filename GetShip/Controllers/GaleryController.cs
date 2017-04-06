@@ -13,26 +13,20 @@ namespace GetShip.Controllers
     {
         //
         // GET: /Galery/
-        ApplicationDbContext db = new ApplicationDbContext();
 
-        public ActionResult Index()
-        {
-            var imageData = db.Galerys.Find(1).ImageData;
-            return new FileStreamResult(new System.IO.MemoryStream(imageData), "image/jpeg");
-        }
 
         public ActionResult AddImage()
         {
             return View();
         }
 
-        public static Task<Galery> PublicAddImage(HttpPostedFileBase file , string type)
-        {
-            GaleryController galeryControl = new GaleryController();
-            return galeryControl.AddImage(file , type);
-        }
+        //public static Galery PublicAddImage(HttpPostedFileBase file , string type)
+        //{
+        //    GaleryController galeryControl = new GaleryController();
+        //    return galeryControl.AddImage(file , type , new ApplicationDbContext());
+        //}
 
-        private async Task<Galery> AddImage(HttpPostedFileBase file , string type)
+        public static Galery AddImage(HttpPostedFileBase file , string type , ApplicationDbContext db)
         {
             Galery gal = new Galery();
             if (file != null)
@@ -43,7 +37,7 @@ namespace GetShip.Controllers
                 gal.ImageData = fileByteArray;
                 gal.DateUploaded = DateTime.Now;
                 db.Galerys.Add(gal);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             // after successfully uploading redirect the user
             return gal;

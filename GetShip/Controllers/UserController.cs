@@ -14,13 +14,13 @@ namespace GetShip.Controllers
         ApplicationDbContext context = new ApplicationDbContext();
         //
         // GET: /User/
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var current_user = context.Users;
             return View(current_user);
         }
 
-        public async Task<ActionResult> EmployeSelary(string id)
+        public ActionResult EmployeSelary(string id)
         {
             var user = Users.GetUser(context, id);
             EmployeSelaryView x = new EmployeSelaryView();

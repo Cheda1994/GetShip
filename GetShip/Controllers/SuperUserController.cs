@@ -53,10 +53,10 @@ namespace GetShip.Controllers
             return View(allCompanies);
         }
         [HttpPost]
-        public ActionResult NewCompany(RegisterCompanyView model)
+        public ActionResult NewCompany(RegisterCompanyView model, HttpPostedFileBase file)
         {
             Company comp = new Company();
-            if((bool)UserSystem.CreateCompany(model))
+            if((bool)UserSystem.CreateCompany(model , file))
             {
                 FlashMessage.Confirmation("The company " + model.UserName + " was created saccesful");
             }

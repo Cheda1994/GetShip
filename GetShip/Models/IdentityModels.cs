@@ -12,7 +12,7 @@ namespace GetShip.Models
         public string Role { get; set; }
         public virtual Company Company { get; set; }
         public virtual Employe Employe { get; set; }
-
+        public virtual Galery Galery { get; set; }
     }
 
 
@@ -43,6 +43,9 @@ namespace GetShip.Models
 
             modelBuilder.Entity<Company>()
                 .HasMany<Employe>(e => e.Employes);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasOptional(s => s.Galery);
         }
 
     }

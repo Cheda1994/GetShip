@@ -54,7 +54,6 @@ namespace GetShip.Controllers
                     Debug.WriteLine(Task.CurrentId);
                 }
             });
-            GetShip.App_Start.UserSystem.Test2();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -100,7 +99,7 @@ namespace GetShip.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public object Register(object model)
+        public object Register(object model, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -112,11 +111,13 @@ namespace GetShip.Controllers
                     case "Company":
                         var companyModel = (RegisterCompanyView)model;
                         user = CreatingCopmpany(companyModel , user);
+                        //user.Galery = new GaleryController().AddImage(file , "Avatar" , context);
                         result = UserManager.Create(user, userModel.Password);
                         break;
                     case "Employe":
                         var modelEmpl = (RegisterEmployeeView)model;
                         user.Employe = modelEmpl.Employe;
+                        user.Galery = new AccountController().Avatar(file, "Avatar");
                         result = UserManager.Create(user, modelEmpl.Password);
                         CreatingEmploye(user);
                         break;
@@ -130,6 +131,25 @@ namespace GetShip.Controllers
             }
             }
 
+
+
+
+        public Galery Avatar(HttpPostedFileBase file, string type)
+        {
+            Galery gal = new Galery();
+            if (file != null)
+            {
+                byte[] fileByteArray = new byte[file.ContentLength];
+                //gal.ImageData = new byte[file.ContentLength];
+                file.InputStream.Read(fileByteArray, 0, file.ContentLength);
+                gal.ImageData = fileByteArray;
+                context.Galerys.Add(gal);
+                context.SaveChanges();
+            }
+            gal.DateUploaded = DateTime.Now;
+            // after successfully uploading redirect the user
+            return gal;
+        }
 
         private ApplicationUser CreatingCopmpany(RegisterCompanyView model , ApplicationUser user)
         {

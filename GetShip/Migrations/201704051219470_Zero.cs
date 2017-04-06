@@ -29,8 +29,11 @@ namespace GetShip.Migrations
                         Age = c.Int(),
                         Role = c.String(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
+                        Galery_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Galeries", t => t.Galery_Id)
+                .Index(t => t.Galery_Id);
             
             CreateTable(
                 "dbo.AspNetUserClaims",
@@ -138,6 +141,7 @@ namespace GetShip.Migrations
         {
             DropForeignKey("dbo.Employes", "Company_Id", "dbo.Companies");
             DropForeignKey("dbo.Companies", "Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUsers", "Galery_Id", "dbo.Galeries");
             DropForeignKey("dbo.Selaries", "Employe_Id", "dbo.Employes");
             DropForeignKey("dbo.Employes", "CurrendWather_Id", "dbo.Wathers");
             DropForeignKey("dbo.Employes", "Id", "dbo.AspNetUsers");
@@ -147,6 +151,7 @@ namespace GetShip.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.Employes", new[] { "Company_Id" });
             DropIndex("dbo.Companies", new[] { "Id" });
+            DropIndex("dbo.AspNetUsers", new[] { "Galery_Id" });
             DropIndex("dbo.Selaries", new[] { "Employe_Id" });
             DropIndex("dbo.Employes", new[] { "CurrendWather_Id" });
             DropIndex("dbo.Employes", new[] { "Id" });
