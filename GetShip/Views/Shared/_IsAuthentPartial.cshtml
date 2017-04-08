@@ -1,9 +1,24 @@
 ﻿@using Microsoft.AspNet.Identity
+
+@{
+    
+    if (GetShip.Models.Users.Current_User().Galery != null)
+    {
+        byte[] avatar = null;
+        avatar = GetShip.Models.Users.Current_User().Galery.ImageData;
+        <img src="data:image;base64,@System.Convert.ToBase64String(avatar)" class="img-circle" />
+    }
+
+}
+
 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-@Html.AntiForgeryToken()
+@Html.AntiForgeryToken();
 
 <ul class="nav navbar-nav navbar-right">
+   <li>
+       @*<img src="data:image;base64,@System.Convert.ToBase64String(avatar)" class="img-circle" />*@
+   </li>
     <li>
         @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
     </li>

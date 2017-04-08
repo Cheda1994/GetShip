@@ -10,7 +10,7 @@ namespace GetShip.Models
     {
         public int Id { get; set; }
         public byte[] ImageData { get; set; }
-        public DateTime DateUploaded { get; set; }
+        public DateTime? DateUploaded { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
         [NotMapped]

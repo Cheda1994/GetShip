@@ -163,6 +163,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UserSystem.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\GaleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -171,9 +172,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704051219470_Zero.cs" />
-    <Compile Include="Migrations\201704051219470_Zero.Designer.cs">
-      <DependentUpon>201704051219470_Zero.cs</DependentUpon>
+    <Compile Include="Migrations\201704061103131_Zero.cs" />
+    <Compile Include="Migrations\201704061103131_Zero.Designer.cs">
+      <DependentUpon>201704061103131_Zero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704061106493_Zero2.cs" />
+    <Compile Include="Migrations\201704061106493_Zero2.Designer.cs">
+      <DependentUpon>201704061106493_Zero2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -253,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -262,8 +268,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704051219470_Zero.resx">
-      <DependentUpon>201704051219470_Zero.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704061103131_Zero.resx">
+      <DependentUpon>201704061103131_Zero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704061106493_Zero2.resx">
+      <DependentUpon>201704061106493_Zero2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

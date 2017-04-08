@@ -40,20 +40,6 @@ namespace GetShip.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            Task.Run(() =>
-            {
-                for (int x = 0; x < 100; x++)
-                {
-                    Debug.WriteLine(Task.CurrentId);
-                }
-            });
-            Task.Run(() =>
-            {
-                for (int x = 0; x < 100; x++)
-                {
-                    Debug.WriteLine(Task.CurrentId);
-                }
-            });
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -436,7 +422,10 @@ namespace GetShip.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            identity.AddClaim(new Claim("Avatar", "Test"));
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+
+            
         }
 
         private void AddErrors(IdentityResult result)
