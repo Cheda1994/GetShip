@@ -13,24 +13,21 @@ namespace GetShip.Models
     public class Users
     {
         public static ApplicationUser Current_User()
-        { 
-            //ApplicationUser user = null;
-            ApplicationDbContext db = new ApplicationDbContext();
-            string curentUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            ApplicationUser user = GetUser(db, curentUserId);
-            return user;
-        }
-        public static ApplicationUser Current_User(ApplicationDbContext db)
         {
-            string curentUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            var user = GetUser(db , curentUserId);
+            ApplicationUser user = null;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                string curentUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                user = GetUser(db, curentUserId);
+            }
             return user;
         }
+       
        public static ApplicationUser GetUser(ApplicationDbContext db , string id)
        {
             var user = new ApplicationUser();
             user = db.Users.Find(id);
-            return user;
+            return (ApplicationUser)user.Clone();
        }
 
     }

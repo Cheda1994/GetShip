@@ -1,5 +1,4 @@
-﻿
-@using (Html.BeginForm("AddSelary", "Company", new { id = ViewBag.Id }, FormMethod.Post))
+﻿@using (Html.BeginForm("AddSelary", "Company", new { id = ViewBag.Id }, FormMethod.Post))
 {
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -14,7 +13,7 @@
                     Count:<p class="modal-open">@Html.TextBoxFor(m => m.Selary.Count)</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" value="Text">
+                    <input type="submit" value="Pay">
                 </div>
             </div>
 

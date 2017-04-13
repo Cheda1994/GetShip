@@ -16,7 +16,6 @@ namespace GetShip.Controllers
     [UserFiltingSystem("Company")]
     public class CompanyController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         //
         // GET: /Company/
         public ActionResult Index()
@@ -29,45 +28,39 @@ namespace GetShip.Controllers
         [HttpPost]
         public ActionResult AddSelary(string id, int selaryCount)
         {
-            try 
-	        {
-            Selary selary = new Selary();
-            selary.Count = selaryCount;
-            selary.Date = DateTime.Now;
-            //selary.Id = ((selaryCount+11)*DateTime.Now.Ticks).ToString();
-            Employe empl = db.Users.Find(id).Employe;
-            selary.Employe = empl;
-            empl.Selarys.Add(selary);
-            //db.Entry(empl).State = EntityState.Modified;
-            db.SaveChanges();
-            }
-             catch(DbEntityValidationException dbEx)
-            {
-                foreach (var valErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var valError in valErrors.ValidationErrors)
-                    {
-                        Debug.WriteLine("Prop:{0} , error:{1}", valError.PropertyName, valError.ErrorMessage);
-                        Trace.TraceInformation("Prop:{0} , error:{1}", valError.PropertyName, valError.ErrorMessage);
-                        
-                    }
-                }
+            using(ApplicationDbContext db = new ApplicationDbContext())
+	        {            
+                Selary selary = new Selary();
+                selary.Count = selaryCount;
+                selary.Date = DateTime.Now;
+                Employe empl = db.Users.Find(id).Employe;
+                selary.Employe = empl;
+                empl.Selarys.Add(selary);
+                db.SaveChanges();
+	        }
                 return View("Index");
-            }
-            return Index();
         }
+
         public ActionResult MyOffice()
         {
-            var currentUser = Users.Current_User(db);
-            Company comp = currentUser.Company;
-            return View(comp);
+          
+                var currentUser = Users.Current_User();
+                Company comp = currentUser.Company;
+                return View(comp);
+            
+            
         }
 
         public async Task<ActionResult> DetailsEmploye(string id)
         {
-            Employe empl = await db.Employees.FindAsync(id);
-            return View(empl);
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                Employe empl = await db.Employees.FindAsync(id);
+                var deepCopyEmpl = empl.Clone();
+                return View(deepCopyEmpl);
+            }
         }
+
         [HttpGet]
         public ActionResult AddEmployee()
         {
@@ -91,44 +84,38 @@ namespace GetShip.Controllers
      
         public ActionResult EmployList()
         {
-            var currentCompamy = Users.Current_User(db).Company;
-            ICollection<Employe> currentCompanyEmpl = currentCompamy.Employes;
-            return View(currentCompanyEmpl);
+                var currentCompamy = Users.Current_User().Company;
+                var currentCompanyEmpl = currentCompamy;
+                return View(currentCompanyEmpl.Employes); 
+            
         }
 
         public ActionResult AddSelary(Employe empl)
         {
             return View();
         }
+
+
         public ActionResult Edit(string id)
         {
-            var company = db.Companies.Find(id);
-            return View(company);
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var company = db.Companies.Find(id);
+                return View(company);
+            }
         }
 
         [HttpPost]
         public ActionResult Edit(Company company)
         {
-            try { 
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
                 db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
                 return View("MyOffice", company);
-                }
-            catch(DbEntityValidationException dbEx)
-            {
-                foreach (var valErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var valError in valErrors.ValidationErrors)
-                    {
-                        Debug.WriteLine("Prop:{0} , error:{1}", valError.PropertyName, valError.ErrorMessage);
-                        Trace.TraceInformation("Prop:{0} , error:{1}", valError.PropertyName, valError.ErrorMessage);
-                        
-                    }
-                }
-                return View("Index");
             }
-            
-
+              
         }
+            
 	}
 }

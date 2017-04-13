@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GetShip.Models.Employe>
+﻿@model List<GetShip.Models.Employe>
 
 @{
     ViewBag.Title = "EmployList";
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @*@Html.DisplayNameFor(model => model.Name)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CurrentLocation)
+            @*@Html.DisplayNameFor(model => model.CurrentLocation)*@
         </th>
         <th></th>
     </tr>
@@ -32,10 +32,6 @@
             @Html.DisplayFor(modelItem => item.CurrentLocation)
         </td>
         <td>
-            @foreach(var i in item.Selarys)
-            {
-                @i.Employe.Id
-            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

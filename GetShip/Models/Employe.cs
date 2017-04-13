@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GetShip.Models
 {
-    public class Employe
+    public class Employe : ICloneable
     {
         public Employe()
         {
@@ -24,6 +24,19 @@ namespace GetShip.Models
         public virtual Company Company { get; set; }
         [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
+
+        public object Clone()
+        {
+            Employe deepCloneEmpl = new Employe()
+            {
+            Id = this.Id,
+            Name = this.Name,
+            CurrentLocation = this.CurrentLocation,
+            CurrendWather = this.CurrendWather,
+            Company = this.Company
+            };
+            return deepCloneEmpl;
+        }
     }
 
     public class Selary
