@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace GetShip
 {
@@ -12,6 +14,29 @@ namespace GetShip
         }
     }
 
+
+    public class ObjectsCompatibility : FilterAttribute, IActionFilter
+    {
+
+        public void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+  
+        }
+
+        public void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            string id = filterContext.HttpContext.Request.Url.Query.Remove(0, 4);
+            if(GetShip.Models.Users.Shallow_Current_User().Company.Id != GetShip.Models.Users.GetShallowUser(new Models.ApplicationDbContext() , id).Employe.Company.Id)
+            {
+                filterContext.Result = new RedirectResult("/Errors/NotFound");
+            }
+            
+
+        }
+    }
+
+
+
     public class UserFiltingSystem : FilterAttribute, IAuthorizationFilter
     {
         public string conditionRole;
@@ -21,7 +46,7 @@ namespace GetShip
         }
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            var user = GetShip.Models.Users.Current_User();
+            var user = GetShip.Models.Users.Deep_Current_User();
             try {
             if (!IsValid(user))
             {

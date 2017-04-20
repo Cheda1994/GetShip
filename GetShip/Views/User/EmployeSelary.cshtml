@@ -19,7 +19,7 @@
 }
 </table>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-        @using (Html.BeginForm("AddSelary", "Company", new { id = @Model.Id }, FormMethod.Post))
+        @using (Html.BeginForm("AddSelary", "Company", new { id = ViewBag.Id }, FormMethod.Post))
         {
             <div id="myModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">

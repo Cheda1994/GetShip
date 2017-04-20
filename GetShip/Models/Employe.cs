@@ -37,6 +37,19 @@ namespace GetShip.Models
             };
             return deepCloneEmpl;
         }
+
+        public bool Compatibility(string id)
+        {
+            if (this.Company.Id == id && this.Company.Id != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 
     public class Selary

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
+using System.Diagnostics;
 
 namespace GetShip.Models
 {
@@ -12,24 +13,67 @@ namespace GetShip.Models
 
     public class Users
     {
-        public static ApplicationUser Current_User()
+        #region GetDeepUser
+        public static ApplicationUser Deep_Current_User()
         {
             ApplicationUser user = null;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 string curentUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                user = GetUser(db, curentUserId);
+                user = GetDeepUser(db, curentUserId);
             }
             return user;
         }
        
-       public static ApplicationUser GetUser(ApplicationDbContext db , string id)
-       {
-            var user = new ApplicationUser();
-            user = db.Users.Find(id);
-            return (ApplicationUser)user.Clone();
-       }
+        public static ApplicationUser GetDeepUser(ApplicationDbContext db , string id)
+        {
+            ApplicationUser user = db.Users.Find(id);
+            return (ApplicationUser)user.DeepCopy();
+        }
+        #endregion
 
+        #region GetShallowUser
+        public static ApplicationUser Shallow_Current_User()
+        {
+            ApplicationUser user = null;
+            ApplicationDbContext db = new ApplicationDbContext();
+            string curentUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            user = GetShallowUser(db, curentUserId);
+            return user;
+        }
+
+        public static ApplicationUser GetShallowUser(ApplicationDbContext db, string id)
+        {
+            ApplicationUser user;
+            try
+            {
+                user = db.Users.Find(id);
+                if(user == null)
+                {
+                    user = new ApplicationUser()
+                    {
+                        Employe = new Employe() 
+                        {
+                            Id = "Exception" ,
+                            Company = new Company() 
+                            {
+                                Id = "Exception"
+                            }
+                        },
+                        Company = new Company()
+                        {
+                            Id = "Exception"
+                        }
+                    };
+                }
+            }
+            catch (System.NullReferenceException)
+            {
+                user = new ApplicationUser();
+            }
+            return (ApplicationUser)user.ShallowCopy();
+        }
+        #endregion
     }
 
     public class ManageUserViewModel

@@ -2,10 +2,10 @@
 
 @{
     
-    if (GetShip.Models.Users.Current_User().Galery != null)
+    if (GetShip.Models.Users.Deep_Current_User().Galery != null)
     {
         byte[] avatar = null;
-        avatar = GetShip.Models.Users.Current_User().Galery.ImageData;
+        avatar = GetShip.Models.Users.Deep_Current_User().Galery.ImageData;
         <img src="data:image;base64,@System.Convert.ToBase64String(avatar)" class="img-circle" />
     }
 

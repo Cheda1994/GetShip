@@ -23,7 +23,14 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img src="data:image;base64,@System.Convert.ToBase64String(item.ApplicationUser.Galery.ImageData)" />
+            @{
+            if (item.ApplicationUser.Galery.ImageData != null)
+            {
+            <img src="data:image;base64,@System.Convert.ToBase64String(item.ApplicationUser.Galery.ImageData)" style="height:70px" />
+            }
+                 
+            }
+           
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -36,7 +43,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "DetailsEmploye", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("DeleteEmploye", "DeleteEmploye", new { id = item.Id })
         </td>
     </tr>
 }

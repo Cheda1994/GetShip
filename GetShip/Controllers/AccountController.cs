@@ -145,7 +145,7 @@ namespace GetShip.Controllers
 
         private void CreatingEmploye(ApplicationUser user)
         {
-            Company comp = Users.Current_User().Company;
+            Company comp = Users.GetShallowUser(context,System.Web.HttpContext.Current.User.Identity.GetUserId()).Company;
             Employe empl = context.Employees.Find(user.Id);
             comp.Employes.Add(empl);
             context.Entry(comp).State = EntityState.Modified;

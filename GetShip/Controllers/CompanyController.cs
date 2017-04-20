@@ -23,7 +23,24 @@ namespace GetShip.Controllers
             return View();
         }
 
-
+        
+        public async Task<ActionResult> DeleteEmploye(string id)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var empl = await db.Employees.FindAsync(id);
+                if(empl.Compatibility(Users.Shallow_Current_User().Company.Id))
+                { 
+                db.Employees.Remove(empl);
+                db.SaveChanges();
+                return RedirectToAction("EmployList");
+                }
+                else
+                {
+                    return View("Errors/NotFound");
+                }
+            }
+        }
 
         [HttpPost]
         public ActionResult AddSelary(string id, int selaryCount)
@@ -44,13 +61,13 @@ namespace GetShip.Controllers
         public ActionResult MyOffice()
         {
           
-                var currentUser = Users.Current_User();
+                var currentUser = Users.Deep_Current_User();
                 Company comp = currentUser.Company;
                 return View(comp);
             
             
         }
-
+        [ObjectsCompatibility]
         public async Task<ActionResult> DetailsEmploye(string id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -74,17 +91,19 @@ namespace GetShip.Controllers
             if(UserSystem.CreateEmploye(model , file))
             {
                 FlashMessage.Confirmation("The employe " + model.UserName + " was created saccesful");
+                return RedirectToAction("EmployList");
             }
             else
             {
                 FlashMessage.Danger("The employe " + model.UserName + " was no created");
+                return View();
             }
-            return View();
+            
         }
      
         public ActionResult EmployList()
         {
-                var currentCompamy = Users.Current_User().Company;
+                var currentCompamy = Users.Deep_Current_User().Company;
                 var currentCompanyEmpl = currentCompamy;
                 return View(currentCompanyEmpl.Employes); 
             

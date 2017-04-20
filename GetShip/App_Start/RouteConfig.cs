@@ -24,6 +24,9 @@ namespace GetShip
                 url: "{controller}/{action}/{firstArrg}/{secondArrg}",
                 defaults: new { controller = "Home", action = "Index", firstArrg = UrlParameter.Optional , secondArrg = UrlParameter.Optional}
             );
+
+
+
         }
     }
 }
