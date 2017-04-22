@@ -27,8 +27,9 @@ namespace GetShip.Models
        
         public static ApplicationUser GetDeepUser(ApplicationDbContext db , string id)
         {
-            ApplicationUser user = db.Users.Find(id);
-            return (ApplicationUser)user.DeepCopy();
+
+                ApplicationUser user = db.Users.Find(id);
+                return (ApplicationUser)user.DeepCopy();           
         }
         #endregion
 

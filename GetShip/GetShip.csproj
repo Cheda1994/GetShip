@@ -173,13 +173,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704061103131_Zero.cs" />
-    <Compile Include="Migrations\201704061103131_Zero.Designer.cs">
-      <DependentUpon>201704061103131_Zero.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704061106493_Zero2.cs" />
-    <Compile Include="Migrations\201704061106493_Zero2.Designer.cs">
-      <DependentUpon>201704061106493_Zero2.cs</DependentUpon>
+    <Compile Include="Migrations\201704211357568_Zero.cs" />
+    <Compile Include="Migrations\201704211357568_Zero.Designer.cs">
+      <DependentUpon>201704211357568_Zero.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -270,11 +266,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704061103131_Zero.resx">
-      <DependentUpon>201704061103131_Zero.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704061106493_Zero2.resx">
-      <DependentUpon>201704061106493_Zero2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704211357568_Zero.resx">
+      <DependentUpon>201704211357568_Zero.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

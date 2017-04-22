@@ -22,7 +22,7 @@ namespace GetShip.Controllers
 
         public ActionResult EmployeSelary(string id)
         {
-            var user = Users.GetUser(context, id);
+            var user = Users.GetShallowUser(context, id);
             EmployeSelaryView x = new EmployeSelaryView();
             List<Selary> newSel = (from selar in context.Selarys
                           where selar.Employe.Id == id

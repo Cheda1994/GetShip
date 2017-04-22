@@ -97,6 +97,7 @@ namespace GetShip.Controllers
                     case "Company":
                         var companyModel = (RegisterCompanyView)model;
                         user = CreatingCopmpany(companyModel , user);
+                        user.Galery = new AccountController().Avatar(file, "Avatar");
                         //user.Galery = new GaleryController().AddImage(file , "Avatar" , context);
                         result = UserManager.Create(user, userModel.Password);
                         break;

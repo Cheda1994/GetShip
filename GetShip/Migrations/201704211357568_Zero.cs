@@ -129,7 +129,7 @@ namespace GetShip.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         ImageData = c.Binary(),
-                        DateUploaded = c.DateTime(nullable: false),
+                        DateUploaded = c.DateTime(),
                         Description = c.String(),
                         Type = c.String(),
                     })
