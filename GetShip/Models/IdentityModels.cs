@@ -54,65 +54,72 @@ namespace GetShip.Models
         #endregion
 
         #region DeepCopy
-        public object DeepCopy()
+
+       public ApplicationUser BaseDeepCopy()
         {
-            ApplicationUser deepCopy = new ApplicationUser()
+            ApplicationUser baseDeepCopy = new ApplicationUser()
             {
+                Id = this.Id,
                 UserName = this.UserName,
                 Age = this.Age,
-                Role = this.Role,
-                Galery = null
+                Role = this.Role
             };
+            if (this.Galery != null)
+            {
+                baseDeepCopy.Galery = this.Galery.DeepClone();
+            };
+           return baseDeepCopy;
+        }
+
+
+        public object DeepCopy()
+        {
+            ApplicationUser deepCopy = this.BaseDeepCopy();
 
             if (this.Galery != null)
             {
-                deepCopy.Galery = new Galery()
-                {
-                    Id = this.Galery.Id,
-                    ImageData = this.Galery.ImageData,
-                    DateUploaded = this.Galery.DateUploaded,
-                    Description = this.Galery.Description,
-                    Type = this.Galery.Type
-                };
+                deepCopy.Galery = this.Galery.DeepClone();
             }
 
             if (this.Employe != null)
             {
-                deepCopy.Employe = new Employe()
-                {
-                    Name = this.Employe.Name,
-                    Selarys = this.Employe.Selarys,
-                    CurrentLocation = this.Employe.CurrentLocation,
-                    CurrendWather = this.Employe.CurrendWather,
-                    Company = this.Employe.Company
-                };
+                deepCopy.Employe = this.Employe.DeepClone();
+                //    new Employe()
+                //{
+                //    Name = this.Employe.Name,
+                //    Selarys = this.Employe.Selarys,
+                //    CurrentLocation = this.Employe.CurrentLocation,
+                //    CurrendWather = this.Employe.CurrendWather,
+                //    Company = this.Employe.Company
+                //};
             }
             else if (this.Company != null)
             {
 
-                deepCopy.Company = new Company()
-                {
-                    Id = this.Company.Id,
-                    Name = this.Company.Name,
-                    Employes = (from x
-                               in this.Company.Employes
-                                select new Employe()
-                                {
-                                    Id = x.Id,
-                                    Name = x.Name,
-                                    Selarys = x.Selarys,
-                                    CurrentLocation = x.CurrentLocation,
-                                    CurrendWather = x.CurrendWather,
-                                    Company = x.Company,
-                                    ApplicationUser = new ApplicationUser()
-                                                        {
-                                                            UserName = x.ApplicationUser.UserName,
-                                                            Age = x.ApplicationUser.Age,
-                                                            Role = x.ApplicationUser.Role,
-                                                            Galery = x.ApplicationUser.Galery
-                                                        }
-                                }).ToList()
-                };
+                deepCopy.Company = this.Company.DeppClone();
+                //    new Company()
+                //{
+                //    Id = this.Company.Id,
+                //    Name = this.Company.Name,
+                //    Employes = (from x
+                //               in this.Company.Employes
+                //                select new Employe()
+                //                {
+                //                    Id = x.Id,
+                //                    Name = x.Name,
+                //                    Selarys = x.Selarys,
+                //                    CurrentLocation = x.CurrentLocation,
+                //                    CurrendWather = x.CurrendWather,
+                //                    Company = x.Company,
+                //                    ApplicationUser = new ApplicationUser()
+                //                                        {
+                //                                            UserName = x.ApplicationUser.UserName,
+                //                                            Age = x.ApplicationUser.Age,
+                //                                            Role = x.ApplicationUser.Role,
+                //                                            Galery = x.ApplicationUser.Galery
+                //                                        }
+                //                }).ToList()
+                //};
             }
 
             return (ApplicationUser)deepCopy;

@@ -73,7 +73,7 @@ namespace GetShip.Controllers
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 Employe empl = await db.Employees.FindAsync(id);
-                var deepCopyEmpl = empl.Clone();
+                var deepCopyEmpl = empl.DeepClone();
                 return View(deepCopyEmpl);
             }
         }

@@ -15,5 +15,18 @@ namespace GetShip.Models
         public string Type { get; set; }
         [NotMapped]
         public HttpPostedFileBase UploadImages { get; set; }
+
+        public Galery DeepClone()
+        {
+            Galery deepGalery = new Galery()
+                                    {
+                                        Id = this.Id,
+                                        ImageData = this.ImageData,
+                                        DateUploaded = this.DateUploaded,
+                                        Description = this.Description,
+                                        Type = this.Type
+                                    };
+            return deepGalery;
+        }
     }
 }

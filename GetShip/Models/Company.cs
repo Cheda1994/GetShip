@@ -20,6 +20,17 @@ namespace GetShip.Models
         [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual ICollection<Employe> Employes { get; set; }
+
+        public Company DeppClone()
+        {
+            Company deepCompany = new Company()
+                                        {
+                                            Id = this.Id,
+                                            Name = this.Name,
+                                            Employes = this.Employes.Select(empl => empl.DeepClone()).ToList()
+                                        };
+            return deepCompany;
+        }
     }
 
 }
