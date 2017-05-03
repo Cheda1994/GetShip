@@ -38,20 +38,6 @@ namespace GetShip.Models
        
         #endregion
 
-        #region TestDeepCopyWithSerialize
-
-        //public ApplicationUser DeepClone()
-        //{
-        //    using (var ms = new MemoryStream())
-        //    {
-        //        var formatter = new BinaryFormatter();
-        //        formatter.Serialize(ms, this);
-        //        ms.Position = 0;
-
-        //        return (ApplicationUser)formatter.Deserialize(ms);
-        //    }
-        //}
-        #endregion
 
         #region DeepCopy
 
@@ -83,7 +69,7 @@ namespace GetShip.Models
 
             if (this.Employe != null)
             {
-                deepCopy.Employe = this.Employe.DeepClone();
+                deepCopy.Employe = (Employe)this.Employe.DeepClone();
                 //    new Employe()
                 //{
                 //    Name = this.Employe.Name,
@@ -135,6 +121,7 @@ namespace GetShip.Models
         }
         public DbSet<Wather> Wathers { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Profesion> Profesions { get; set; }
         public DbSet<Employe> Employees { get; set; }
         public DbSet<Selary> Selarys { get; set; }
         public DbSet<Galery> Galerys { get; set; }

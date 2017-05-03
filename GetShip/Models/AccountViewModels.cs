@@ -65,14 +65,17 @@ namespace GetShip.Models
                         {
                             Id = "Exception"
                         }
+                        
                     };
                 }
+                Debug.WriteLine("that was-No exception");
             }
             catch (System.NullReferenceException)
             {
+                Debug.WriteLine("that was exception");
                 user = new ApplicationUser();
             }
-            return (ApplicationUser)user.ShallowCopy();
+            return (ApplicationUser)user;
         }
         #endregion
     }

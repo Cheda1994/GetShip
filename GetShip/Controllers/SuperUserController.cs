@@ -66,6 +66,16 @@ namespace GetShip.Controllers
             }
             return View();
         }
+        
+        public ActionResult ProfesionsList()
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                List<Profesion> profesions = context.Profesions.Select(x => new Profesion() {Id = x.Id , Name = x.Name , Description = x.Description }).ToList();
+                return View(profesions);    
+            }
+            
+        }
 
 	}
 }

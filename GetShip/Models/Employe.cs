@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Diagnostics;
 
 namespace GetShip.Models
 {
@@ -20,7 +21,8 @@ namespace GetShip.Models
         public string Name { get; set; }
         public List<Selary> Selarys { get; set; }
         public string CurrentLocation { get; set; }
-        public Wather CurrendWather { get; set; }
+        public virtual Profesion Profesion { get; set; }
+        public virtual Wather CurrendWather { get; set; }
         public virtual Company Company { get; set; }
         [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
@@ -28,29 +30,25 @@ namespace GetShip.Models
 
         public Employe DeepClone()
         {
-            Employe deepCloneEmpl = new Employe()
-            {
-            Id = this.Id,
-            Name = this.Name,
-            CurrentLocation = this.CurrentLocation,
-            CurrendWather = this.CurrendWather,
-            ApplicationUser = this.ApplicationUser.BaseDeepCopy()
-            };
-            return deepCloneEmpl;
-        }
+            Employe deepCloneEmpl = new Employe();
 
-        public bool Compatibility(string id)
-        {
-            if (this.Company.Id == id && this.Company.Id != null)
+            if (this != null)
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                
+                deepCloneEmpl = new Employe()
+                {
+                    Id = this.Id,
+                    Name = this.Name,
+                    CurrentLocation = this.CurrentLocation,
+                    CurrendWather = this.CurrendWather.DeepClone(),
+                    Profesion = this.Profesion.DeepCopy(),
+                    ApplicationUser = this.ApplicationUser.BaseDeepCopy()
+                };
             }
 
+            return (Employe)deepCloneEmpl;
         }
+
     }
 
     public class Selary

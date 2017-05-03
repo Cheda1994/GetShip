@@ -23,22 +23,14 @@ namespace GetShip.Controllers
             return View();
         }
 
-        
-        public async Task<ActionResult> DeleteEmploye(string id)
+        [ObjectsCompatibility]
+        public async Task DeleteEmploye(string id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var empl = await db.Employees.FindAsync(id);
-                if(empl.Compatibility(Users.Shallow_Current_User().Company.Id))
-                { 
                 db.Employees.Remove(empl);
                 db.SaveChanges();
-                return RedirectToAction("EmployList");
-                }
-                else
-                {
-                    return View("Errors/NotFound");
-                }
             }
         }
 
@@ -46,7 +38,8 @@ namespace GetShip.Controllers
         public ActionResult AddSelary(string id, int selaryCount)
         {
             using(ApplicationDbContext db = new ApplicationDbContext())
-	        {            
+	        {
+                
                 Selary selary = new Selary();
                 selary.Count = selaryCount;
                 selary.Date = DateTime.Now;
@@ -114,7 +107,7 @@ namespace GetShip.Controllers
             return View();
         }
 
-
+        [ObjectsCompatibility]
         public ActionResult Edit(string id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -125,6 +118,7 @@ namespace GetShip.Controllers
         }
 
         [HttpPost]
+        [ObjectsCompatibility]
         public ActionResult Edit(Company company)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())

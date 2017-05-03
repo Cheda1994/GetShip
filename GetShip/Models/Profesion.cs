@@ -8,9 +8,20 @@ namespace GetShip.Models
 {
     public class Profesion
     {
-        public int ProfesionID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+    
+        public Profesion DeepCopy()
+        {
+            Profesion profesionDeepCopy = new Profesion()
+                                                        {
+                                                            Id = this.Id,
+                                                            Name = this.Name,
+                                                            Description = this.Description
+                                                        };
+            return profesionDeepCopy;
+        }
     }
 
 }

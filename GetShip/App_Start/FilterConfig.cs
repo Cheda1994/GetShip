@@ -25,11 +25,20 @@ namespace GetShip
 
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            string id = filterContext.HttpContext.Request.Url.Query.Remove(0, 4);
-            if(GetShip.Models.Users.Shallow_Current_User().Company.Id != GetShip.Models.Users.GetShallowUser(new Models.ApplicationDbContext() , id).Employe.Company.Id)
+            if (filterContext.HttpContext.Request.Url.Query.Length > 4)
+	        {
+                string id = filterContext.HttpContext.Request.Url.Query.Remove(0, 4);
+                if ((GetShip.Models.Users.Shallow_Current_User().Company.Id != GetShip.Models.Users.GetShallowUser(new Models.ApplicationDbContext(), id).Employe.Company.Id) || (id == "") || (filterContext.HttpContext.Request.Url.Query.Length < 1) )
+                {
+                    filterContext.Result = new RedirectResult("/Errors/NotFound");
+                }
+	        }
+            else
             {
                 filterContext.Result = new RedirectResult("/Errors/NotFound");
             }
+            
+           
             
 
         }

@@ -19,6 +19,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Galery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Galery.ImageData)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
@@ -36,7 +44,40 @@
         <dd>
             @Html.DisplayFor(model => model.Selarys)
         </dd>
+   
+            <h3>Profesion:</h3>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Profesion.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profesion.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profesion.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profesion.Description)
+        </dd>
+
+        <h3>Wather:</h3>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrendWather.Temp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrendWather.Temp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrendWather.WatherStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrendWather.WatherStatus)
+        </dd>
     </dl>
 </div>
 @foreach(var s in @Model.Selarys)
@@ -44,7 +85,16 @@
     @s
 }
 <p>
-    @Html.ActionLink("Selary info", "EmployeSelary", "User", new { id = Model.Id } , null) |
+    @Ajax.ActionLink("Selary info", "EmployeSelary", "User", new { id = Model.Id }, new AjaxOptions
+                                                                                                 {
+                                                                                                     UpdateTargetId = "selary-list",
+                                                                                                     HttpMethod = "Gey",
+                                                                                                     OnSuccess = "OnSuccess",
+                                                                                                     LoadingElementId = "prgress"
+                                                                                                 })       |
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<div id="selary-list">
+</div> 
