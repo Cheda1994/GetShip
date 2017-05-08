@@ -14,12 +14,22 @@ namespace GetShip.Models
     
         public Profesion DeepCopy()
         {
-            Profesion profesionDeepCopy = new Profesion()
-                                                        {
-                                                            Id = this.Id,
-                                                            Name = this.Name,
-                                                            Description = this.Description
-                                                        };
+            Profesion profesionDeepCopy;
+            try
+            {
+                profesionDeepCopy = new Profesion()
+                                                            {
+                                                                Id = this.Id,
+                                                                Name = this.Name,
+                                                                Description = this.Description
+                                                            };
+            }
+            catch (Exception)
+            {
+
+                profesionDeepCopy = new Profesion();
+            }
+           
             return profesionDeepCopy;
         }
     }

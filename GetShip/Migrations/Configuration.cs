@@ -16,6 +16,8 @@ using System.Data.Entity.Validation;
 
         protected override void Seed(GetShip.Models.ApplicationDbContext context)
         {
+
+            GetShip.Controllers.AccountController accountCont = new  GetShip.Controllers.AccountController().Register()
             //try
             //{
             //    var comp = context.Companies.Find("cd48663c-1999-4812-8ee5-6796f81602ce");

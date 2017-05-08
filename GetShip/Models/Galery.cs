@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace GetShip.Models
 {
@@ -27,6 +28,18 @@ namespace GetShip.Models
                                         Type = this.Type
                                     };
             return deepGalery;
+        }
+
+        public static byte[] Current_Avatar()
+        {
+            using(ApplicationDbContext db = new ApplicationDbContext())
+	            {
+
+                    string curentUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                    var avatar = db.Users.Find(curentUserId).Galery.ImageData;
+                    return avatar;
+	            };       
+            
         }
     }
 }

@@ -28,26 +28,49 @@ namespace GetShip.Models
         public virtual ApplicationUser ApplicationUser { get; set; }
 
 
+        #region GlobalDeepClone
         public Employe DeepClone()
         {
-            Employe deepCloneEmpl = new Employe();
-
-            if (this != null)
-            {
-                
+            Employe deepCloneEmpl;
+            try 
+	        {	        
                 deepCloneEmpl = new Employe()
                 {
                     Id = this.Id,
                     Name = this.Name,
                     CurrentLocation = this.CurrentLocation,
                     CurrendWather = this.CurrendWather.DeepClone(),
-                    Profesion = this.Profesion.DeepCopy(),
                     ApplicationUser = this.ApplicationUser.BaseDeepCopy()
                 };
+
+                try
+                {
+                    deepCloneEmpl.CurrendWather = this.CurrendWather.DeepClone();
+                }
+                catch (NullReferenceException)
+                {
+
+                    deepCloneEmpl.CurrendWather = null;
+                }
+
+                try
+                {
+                    deepCloneEmpl.Profesion = this.Profesion.DeepCopy();
+                }
+                catch (NullReferenceException)
+                {
+
+                    deepCloneEmpl.Profesion = null;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                deepCloneEmpl = null;
             }
 
             return (Employe)deepCloneEmpl;
         }
+        #endregion
 
     }
 

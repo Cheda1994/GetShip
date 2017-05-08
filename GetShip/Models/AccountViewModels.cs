@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
-using System.Diagnostics;
+//using System.Diagnostics;
 
 namespace GetShip.Models
 {
@@ -68,11 +68,9 @@ namespace GetShip.Models
                         
                     };
                 }
-                Debug.WriteLine("that was-No exception");
             }
             catch (System.NullReferenceException)
             {
-                Debug.WriteLine("that was exception");
                 user = new ApplicationUser();
             }
             return (ApplicationUser)user;

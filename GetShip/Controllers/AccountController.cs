@@ -113,13 +113,16 @@ namespace GetShip.Controllers
             }
             else
             {
-
                 return false;
             }
             }
 
 
-
+        public void SuperUser(ApplicationUser user , string password)
+        {
+            user.Role = "SuperUser";
+            UserManager.Create(user, password);
+        }
 
         public Galery Avatar(HttpPostedFileBase file, string type)
         {
