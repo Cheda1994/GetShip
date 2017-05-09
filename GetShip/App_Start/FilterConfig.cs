@@ -27,8 +27,8 @@ namespace GetShip
         {
             if (filterContext.HttpContext.Request.Url.Query.Length > 4)
 	        {
-                string id = filterContext.HttpContext.Request.Url.Query.Remove(0, 4);
-                if ((GetShip.Models.Users.Shallow_Current_User().Company.Id != GetShip.Models.Users.GetShallowUser(new Models.ApplicationDbContext(), id).Employe.Company.Id) || (id == "") || (filterContext.HttpContext.Request.Url.Query.Length < 1) )
+                
+                if (IsValid(filterContext))
                 {
                     filterContext.Result = new RedirectResult("/Errors/NotFound");
                 }
@@ -37,10 +37,12 @@ namespace GetShip
             {
                 filterContext.Result = new RedirectResult("/Errors/NotFound");
             }
-            
-           
-            
+        }
 
+        public bool IsValid(ActionExecutingContext filterContext)
+        {
+            string id = filterContext.HttpContext.Request.Url.Query.Remove(0, 4);
+            return (GetShip.Models.Users.Shallow_Current_User().Company.Id != GetShip.Models.Users.GetShallowUser(new Models.ApplicationDbContext(), id).Employe.Company.Id) || (id == "") || (filterContext.HttpContext.Request.Url.Query.Length < 1);
         }
     }
 

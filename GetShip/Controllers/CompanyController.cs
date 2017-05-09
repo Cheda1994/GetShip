@@ -11,6 +11,7 @@ using GetShip.App_Start;
 using System.Threading.Tasks;
 using Vereyon.Web;
 
+
 namespace GetShip.Controllers
 {
     [UserFiltingSystem("Company")]
@@ -29,7 +30,9 @@ namespace GetShip.Controllers
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var empl = await db.Employees.FindAsync(id);
+                ApplicationUser user = empl.ApplicationUser;
                 db.Employees.Remove(empl);
+                db.Users.Remove(user);
                 db.SaveChanges();
             }
         }
@@ -53,7 +56,7 @@ namespace GetShip.Controllers
 
         public ActionResult MyOffice()
         {
-          
+                
                 var currentUser = Users.Deep_Current_User();
                 Company comp = currentUser.Company;
                 return View(comp);

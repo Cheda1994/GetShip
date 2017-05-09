@@ -118,11 +118,6 @@ namespace GetShip.Controllers
             }
 
 
-        public void SuperUser(ApplicationUser user , string password)
-        {
-            user.Role = "SuperUser";
-            UserManager.Create(user, password);
-        }
 
         public Galery Avatar(HttpPostedFileBase file, string type)
         {
@@ -427,9 +422,7 @@ namespace GetShip.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             identity.AddClaim(new Claim("Avatar", "Test"));
-            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
-
-            
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);   
         }
 
         private void AddErrors(IdentityResult result)
