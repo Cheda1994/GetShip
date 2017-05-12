@@ -21,7 +21,6 @@ namespace GetShip.App_Start
         {
             RegisterEmployeeView v = new RegisterEmployeeView();
             return (bool)us.Register(model , file);
-            
         }
 
         public static bool CreateEmploye(RegisterEmployeeView model , HttpPostedFileBase file)

@@ -38,7 +38,6 @@ namespace GetShip.Models
        
         #endregion
 
-
         #region DeepCopy
 
        public ApplicationUser BaseDeepCopy()
