@@ -153,5 +153,9 @@ namespace GetShip.Models
         //}
         [Display(Name = "Employe")]
         public Employe Employe { get; set; }
+
+        public System.Web.Mvc.SelectList Profesions { get; set; }
+
+        public Profesion Profesion { get; set; }
     }
 }

@@ -43,6 +43,14 @@
             @Html.TextBoxFor(m => m.Employe.Name, new { @class = "form-control" })
         </div>
     </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Profesion, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Profesion.Id, new GetShip.Models.ApplicationDbContext().Profesions.ToList().Select(x => new SelectListItem(){Value = x.Id.ToString() , Text = x.Name}) , new { @class = "form-control" })
+        </div>
+    </div>
+    
     <h1>Wather</h1>
             <div class="form-group">
         @Html.LabelFor(m => m.Employe.CurrendWather.Temp, new { @class = "col-md-2 control-label" })

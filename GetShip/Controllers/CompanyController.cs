@@ -77,12 +77,15 @@ namespace GetShip.Controllers
         [HttpGet]
         public ActionResult AddEmployee()
         {
+            RegisterEmployeeView model = new RegisterEmployeeView();
+            model.Profesions = new SelectList(new ApplicationDbContext().Profesions, model.Profesion);
             return View();
         }
 
         [HttpPost]
         public ActionResult AddEmployee(RegisterEmployeeView model, HttpPostedFileBase file)
         {
+            model.Profesion = new Profesion() { Id = model.Profesion.Id };
             model.Role = "Employe";
             if(UserSystem.CreateEmploye(model , file))
             {

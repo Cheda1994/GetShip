@@ -106,6 +106,7 @@ namespace GetShip.Controllers
                         user.Employe = modelEmpl.Employe;
                         user.Galery = new AccountController().Avatar(file, "Avatar");
                         result = UserManager.Create(user, modelEmpl.Password);
+                        user.Employe.Profesion = context.Profesions.Find(modelEmpl.Profesion.Id);
                         CreatingEmploye(user);
                         break;
                 }
@@ -146,6 +147,7 @@ namespace GetShip.Controllers
         {
             Company comp = Users.GetShallowUser(context,System.Web.HttpContext.Current.User.Identity.GetUserId()).Company;
             Employe empl = context.Employees.Find(user.Id);
+            empl.Profesion = user.Employe.Profesion;
             comp.Employes.Add(empl);
             context.Entry(comp).State = EntityState.Modified;
             context.SaveChanges();
