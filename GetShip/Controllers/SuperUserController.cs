@@ -71,10 +71,41 @@ namespace GetShip.Controllers
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                List<Profesion> profesions = context.Profesions.Select(x => new Profesion() {Id = x.Id , Name = x.Name , Description = x.Description }).ToList();
+                List<Profesion> profesions = context.Profesions.ToList().Select(x => x.DeepCopy()).ToList();
                 return View(profesions);    
             }
             
+        }
+
+        [HttpGet]
+        public ActionResult AddProfesion()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddProfesion(Profesion profesion)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                try
+                {
+                    context.Profesions.Add(profesion);
+                    context.SaveChanges();
+                    return RedirectToAction("ProfesionsList");
+                }
+                catch (InvalidOperationException)
+                {
+                    return RedirectToAction("NotFound" , "Errors");
+                }
+            }
+        }
+
+        public ActionResult Selarys()
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                return View(context.Selarys.ToList());    
+            }
         }
 
 	}

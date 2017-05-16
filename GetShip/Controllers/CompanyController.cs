@@ -56,13 +56,11 @@ namespace GetShip.Controllers
 
         public ActionResult MyOffice()
         {
-                
-                var currentUser = Users.Deep_Current_User();
-                Company comp = currentUser.Company;
-                return View(comp);
-            
-            
+            var currentUser = Users.Deep_Current_User();
+            Company comp = currentUser.Company;
+            return View(comp);
         }
+
         [ObjectsCompatibility]
         public async Task<ActionResult> DetailsEmploye(string id)
         {
