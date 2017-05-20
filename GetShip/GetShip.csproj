@@ -181,12 +181,17 @@
     <Compile Include="Migrations\201704301719462_Prof.Designer.cs">
       <DependentUpon>201704301719462_Prof.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705171629212_AddGaleryToUserAndAvatar.cs" />
+    <Compile Include="Migrations\201705171629212_AddGaleryToUserAndAvatar.Designer.cs">
+      <DependentUpon>201705171629212_AddGaleryToUserAndAvatar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Employe.cs" />
     <Compile Include="Models\Galery.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Messenge.cs" />
     <Compile Include="Models\Profesion.cs" />
     <Compile Include="Models\Wather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -280,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704301719462_Prof.resx">
       <DependentUpon>201704301719462_Prof.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705171629212_AddGaleryToUserAndAvatar.resx">
+      <DependentUpon>201705171629212_AddGaleryToUserAndAvatar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

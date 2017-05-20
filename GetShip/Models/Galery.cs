@@ -36,7 +36,7 @@ namespace GetShip.Models
 	            {
 
                     string curentUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                    var avatar = db.Users.Find(curentUserId).Galery.ImageData;
+                    var avatar = db.Users.Find(curentUserId).Avatar.ImageData;
                     return avatar;
 	            };       
             

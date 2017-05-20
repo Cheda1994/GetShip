@@ -97,14 +97,14 @@ namespace GetShip.Controllers
                     case "Company":
                         var companyModel = (RegisterCompanyView)model;
                         user = CreatingCopmpany(companyModel , user);
-                        user.Galery = new AccountController().Avatar(file, "Avatar");
+                        user.Avatar = new AccountController().Avatar(file, "Avatar");
                         //user.Galery = new GaleryController().AddImage(file , "Avatar" , context);
                         result = UserManager.Create(user, userModel.Password);
                         break;
                     case "Employe":
                         var modelEmpl = (RegisterEmployeeView)model;
                         user.Employe = modelEmpl.Employe;
-                        user.Galery = new AccountController().Avatar(file, "Avatar");
+                        user.Avatar = new AccountController().Avatar(file, "Avatar");
                         result = UserManager.Create(user, modelEmpl.Password);
                         user.Employe.Profesion = context.Profesions.Find(modelEmpl.Profesion.Id);
                         CreatingEmploye(user);

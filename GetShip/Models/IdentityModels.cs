@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Diagnostics;
@@ -15,7 +16,8 @@ namespace GetShip.Models
         public string Role { get; set; }
         public virtual Company Company { get; set; }
         public virtual Employe Employe { get; set; }
-        public virtual Galery Galery { get; set; }
+        public virtual List<Galery> Galery { get; set; }
+        public virtual Galery Avatar { get; set; }
 
       
 
@@ -49,10 +51,14 @@ namespace GetShip.Models
                 Age = this.Age,
                 Role = this.Role
             };
-            if (this.Galery != null)
+            if (this.Avatar != null)
             {
-                baseDeepCopy.Galery = this.Galery.DeepClone();
-            };
+                baseDeepCopy.Avatar = this.Avatar.DeepClone();
+            }
+            else
+            {
+                baseDeepCopy.Avatar = new Galery();
+            }
            return baseDeepCopy;
         }
 
@@ -61,9 +67,9 @@ namespace GetShip.Models
         {
             ApplicationUser deepCopy = this.BaseDeepCopy();
 
-            if (this.Galery != null)
+            if (this.Avatar != null)
             {
-                deepCopy.Galery = this.Galery.DeepClone();
+                deepCopy.Avatar = this.Avatar.DeepClone();
             }
 
             if (this.Employe != null)
@@ -142,7 +148,7 @@ namespace GetShip.Models
                 .HasMany<Employe>(e => e.Employes);
 
             modelBuilder.Entity<ApplicationUser>()
-                .HasOptional(s => s.Galery);
+                .HasOptional(s => s.Avatar);
         }
 
     }

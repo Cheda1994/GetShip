@@ -36,9 +36,9 @@
     <tr>
         <td>
             @{
-            if (item.ApplicationUser.Galery.ImageData != null)
+            if (item.ApplicationUser.Avatar.ImageData != null)
             {
-            <img src="data:image;base64,@System.Convert.ToBase64String(item.ApplicationUser.Galery.ImageData)" style="height:70px" />
+            <img src="data:image;base64,@System.Convert.ToBase64String(item.ApplicationUser.Avatar.ImageData)" style="height:70px" />
             }
                  
             }
