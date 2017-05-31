@@ -6,6 +6,8 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace GetShip.Models
 {
@@ -27,9 +29,14 @@ namespace GetShip.Models
             Company deepCompany = new Company()
                                         {
                                             Id = this.Id,
-                                            Name = this.Name,
-                                            Employes = this.Employes.Select(empl => empl.DeepClone()).ToList()
+                                            Name = this.Name
                                         };
+            List<Employe> employes = new List<Employe>();
+            Parallel.ForEach(this.Employes, 
+                            new ParallelOptions { MaxDegreeOfParallelism = 10 }, 
+                            (employe) => employes.Add(employe.DeepClone()));
+
+            deepCompany.Employes = employes;
             return deepCompany;
         }
     }

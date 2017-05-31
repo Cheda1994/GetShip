@@ -24,7 +24,7 @@ namespace GetShip.Controllers
 
         public ActionResult AllEmployee(int page)
         {
-            if(page != null)
+            if(page != 0)
             {
                 page = 1;
             }

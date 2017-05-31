@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,6 +7,9 @@ using System.Data.Entity;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Threading.Tasks;
 
 namespace GetShip.Models
 {
@@ -19,7 +23,6 @@ namespace GetShip.Models
         public virtual List<Galery> Galery { get; set; }
         public virtual Galery Avatar { get; set; }
 
-      
 
         #region ShallowCopy
         public object ShallowCopy()
@@ -51,68 +54,31 @@ namespace GetShip.Models
                 Age = this.Age,
                 Role = this.Role
             };
-            if (this.Avatar != null)
-            {
-                baseDeepCopy.Avatar = this.Avatar.DeepClone();
-            }
-            else
-            {
-                baseDeepCopy.Avatar = new Galery();
-            }
-           return baseDeepCopy;
+            baseDeepCopy.Avatar = this.Avatar.DeepClone();
+            return baseDeepCopy;
         }
+
 
 
         public object DeepCopy()
         {
             ApplicationUser deepCopy = this.BaseDeepCopy();
-
+            Task t1;
+            Task t2;
             if (this.Avatar != null)
             {
-                deepCopy.Avatar = this.Avatar.DeepClone();
+                t1 = Task.Factory.StartNew(() => deepCopy.Avatar = this.Avatar.DeepClone());
             }
 
-            if (this.Employe != null)
+            if (this.Role == "Company")
             {
-                deepCopy.Employe = (Employe)this.Employe.DeepClone();
-                //    new Employe()
-                //{
-                //    Name = this.Employe.Name,
-                //    Selarys = this.Employe.Selarys,
-                //    CurrentLocation = this.Employe.CurrentLocation,
-                //    CurrendWather = this.Employe.CurrendWather,
-                //    Company = this.Employe.Company
-                //};
+                t2 = Task.Factory.StartNew(() => deepCopy.Company = (Company)this.Company.DeppClone());
             }
-            else if (this.Company != null)
+            else
             {
-
-                deepCopy.Company = this.Company.DeppClone();
-                //    new Company()
-                //{
-                //    Id = this.Company.Id,
-                //    Name = this.Company.Name,
-                //    Employes = (from x
-                //               in this.Company.Employes
-                //                select new Employe()
-                //                {
-                //                    Id = x.Id,
-                //                    Name = x.Name,
-                //                    Selarys = x.Selarys,
-                //                    CurrentLocation = x.CurrentLocation,
-                //                    CurrendWather = x.CurrendWather,
-                //                    Company = x.Company,
-                //                    ApplicationUser = new ApplicationUser()
-                //                                        {
-                //                                            UserName = x.ApplicationUser.UserName,
-                //                                            Age = x.ApplicationUser.Age,
-                //                                            Role = x.ApplicationUser.Role,
-                //                                            Galery = x.ApplicationUser.Galery
-                //                                        }
-                //                }).ToList()
-                //};
+                t2 = Task.Factory.StartNew(() => deepCopy.Employe = (Employe)this.Employe.DeepClone());
             }
-
+            t2.Wait();
             return (ApplicationUser)deepCopy;
         }
     }
@@ -127,6 +93,7 @@ namespace GetShip.Models
         public DbSet<Wather> Wathers { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Profesion> Profesions { get; set; }
+        public DbSet<Famaly> Famalis { get; set; }
         public DbSet<Employe> Employees { get; set; }
         public DbSet<Selary> Selarys { get; set; }
         public DbSet<Galery> Galerys { get; set; }
@@ -139,6 +106,9 @@ namespace GetShip.Models
 
             modelBuilder.Entity<ApplicationUser>()
                 .HasOptional(s => s.Company);
+
+            modelBuilder.Entity<Famaly>()
+                .HasRequired(s => s.Employe);
 
             modelBuilder.Entity<Selary>()
                 .HasRequired<Employe>(e => e.Employe)

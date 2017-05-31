@@ -1,0 +1,19 @@
+﻿@model GetShip.Models.Famaly
+@{
+    ViewBag.Title = "FamalyProp";
+}
+
+<h2>FamalyProp</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(m => m.Id)
+<h5>Selary acsess: @Html.EditorFor(m => m.SelaryAcsess)</h5>
+    @ViewBag.Test
+<h5>Location Acsess: @Html.EditorFor(m => m.LocationAcsess)</h5>
+
+<h5>Galery Acsess: @Html.EditorFor(m => m.GaleryAcsess)</h5>
+
+<h5>Wether Acsesss: @Html.EditorFor(m => m.WetherAcsess)</h5>
+<input type="submit" />
+}

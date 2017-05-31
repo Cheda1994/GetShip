@@ -173,25 +173,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704211357568_Zero.cs" />
-    <Compile Include="Migrations\201704211357568_Zero.Designer.cs">
-      <DependentUpon>201704211357568_Zero.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704301719462_Prof.cs" />
-    <Compile Include="Migrations\201704301719462_Prof.Designer.cs">
-      <DependentUpon>201704301719462_Prof.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705171629212_AddGaleryToUserAndAvatar.cs" />
-    <Compile Include="Migrations\201705171629212_AddGaleryToUserAndAvatar.Designer.cs">
-      <DependentUpon>201705171629212_AddGaleryToUserAndAvatar.cs</DependentUpon>
+    <Compile Include="Migrations\201705231932324_Famaly.cs" />
+    <Compile Include="Migrations\201705231932324_Famaly.Designer.cs">
+      <DependentUpon>201705231932324_Famaly.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Employe.cs" />
+    <Compile Include="Models\Famaly.cs" />
     <Compile Include="Models\Galery.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Messenge.cs" />
+    <Compile Include="Models\Messange.cs" />
     <Compile Include="Models\Profesion.cs" />
     <Compile Include="Models\Wather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -206,6 +199,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\Cheda.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -267,6 +263,7 @@
     <Content Include="Views\SuperUser\ProfesionsList.cshtml" />
     <Content Include="Views\SuperUser\AddProfesion.cshtml" />
     <Content Include="Views\SuperUser\Selarys.cshtml" />
+    <Content Include="Views\User\FamalyProp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -276,22 +273,18 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704211357568_Zero.resx">
-      <DependentUpon>201704211357568_Zero.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704301719462_Prof.resx">
-      <DependentUpon>201704301719462_Prof.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705171629212_AddGaleryToUserAndAvatar.resx">
-      <DependentUpon>201705171629212_AddGaleryToUserAndAvatar.cs</DependentUpon>
-    </EmbeddedResource>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <EmbeddedResource Include="Migrations\201705231932324_Famaly.resx">
+      <DependentUpon>201705231932324_Famaly.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -321,6 +314,8 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(VisualStudioVersion)' == ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(VisualStudioVersion)' != ''" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

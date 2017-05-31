@@ -14,7 +14,7 @@ using Vereyon.Web;
 
 namespace GetShip.Controllers
 {
-    [UserFiltingSystem("Company")]
+    //[UserFiltingSystem("Company")]
     public class CompanyController : Controller
     {
         //
@@ -24,18 +24,18 @@ namespace GetShip.Controllers
             return View();
         }
 
-        [ObjectsCompatibility]
-        public async Task DeleteEmploye(string id)
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var empl = await db.Employees.FindAsync(id);
-                ApplicationUser user = empl.ApplicationUser;
-                db.Employees.Remove(empl);
-                db.Users.Remove(user);
-                db.SaveChanges();
-            }
-        }
+        //[ObjectsCompatibility]
+        //public async Task DeleteEmploye(string id)
+        //{
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        var empl = await db.Employees.FindAsync(id);
+        //        ApplicationUser user = empl.ApplicationUser;
+        //        db.Employees.Remove(empl);
+        //        db.Users.Remove(user);
+        //        db.SaveChanges();
+        //    }
+        //}
 
         [HttpPost]
         public ActionResult AddSelary(string id, int selaryCount)

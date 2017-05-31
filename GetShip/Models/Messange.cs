@@ -5,11 +5,10 @@ using System.Web;
 
 namespace GetShip.Models
 {
-    public class Messenge
+    public class Messange
     {
         public int Id { get; set; }
         public string Text { get; set; }
         public ApplicationUser Author { set; get; }
-        public ApplicationUser Getter { set; get; }
     }
 }

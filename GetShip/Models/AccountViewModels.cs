@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
 //using System.Diagnostics;
 
 namespace GetShip.Models
@@ -27,7 +28,6 @@ namespace GetShip.Models
        
         public static ApplicationUser GetDeepUser(ApplicationDbContext db , string id)
         {
-
                 ApplicationUser user = db.Users.Find(id);
                 return (ApplicationUser)user.DeepCopy();           
         }
@@ -49,25 +49,6 @@ namespace GetShip.Models
             try
             {
                 user = db.Users.Find(id);
-                if(user == null)
-                {
-                    user = new ApplicationUser()
-                    {
-                        Employe = new Employe() 
-                        {
-                            Id = "Exception" ,
-                            Company = new Company() 
-                            {
-                                Id = "Exception"
-                            }
-                        },
-                        Company = new Company()
-                        {
-                            Id = "Exception"
-                        }
-                        
-                    };
-                }
             }
             catch (System.NullReferenceException)
             {

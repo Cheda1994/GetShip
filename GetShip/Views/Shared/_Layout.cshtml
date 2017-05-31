@@ -10,6 +10,9 @@
 
 </head>
 <body>
+    @{
+        System.Diagnostics.Stopwatch x = System.Diagnostics.Stopwatch.StartNew();
+    }
     <div id="user-bar">
         @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
     </div>
@@ -19,5 +22,9 @@
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @{
+        x.Stop();
+        <h1>@x.Elapsed.Seconds</h1>
+    }
 </body>
 </html>

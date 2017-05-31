@@ -24,7 +24,6 @@ namespace GetShip.Controllers
         }
         public ActionResult Index()
         {
-
             return View();
         }
 

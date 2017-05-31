@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "DetailsEmploye";
-    ViewBag.Avatar = Model.ApplicationUser.Galery.ImageData;
+    ViewBag.Avatar = Model.ApplicationUser.Avatar.ImageData;
 }
 
 <h2>DetailsEmploye</h2>
@@ -22,10 +22,13 @@
         <dt>
             @Html.DisplayNameFor(model => model.ApplicationUser.Galery)
         </dt>
-
+        @if (ViewBag.Avatar != null)
+        {
         <dd>
             <img src="data:image;base64,@System.Convert.ToBase64String(ViewBag.Avatar)"  style="height:70px"/>
         </dd>
+        }
+
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)

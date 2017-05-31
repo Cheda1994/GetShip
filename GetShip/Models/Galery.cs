@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
+using System.Text;
 
 namespace GetShip.Models
 {
@@ -37,6 +38,10 @@ namespace GetShip.Models
 
                     string curentUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
                     var avatar = db.Users.Find(curentUserId).Avatar.ImageData;
+                    if(avatar == null)
+                    {
+                        avatar = null;
+                    }
                     return avatar;
 	            };       
             

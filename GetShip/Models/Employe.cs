@@ -19,6 +19,7 @@ namespace GetShip.Models
         [Key, ForeignKey("ApplicationUser")]
         public string Id { get; set; }
         public string Name { get; set; }
+        public virtual Famaly Famaly { get; set; }
         public List<Selary> Selarys { get; set; }
         public string CurrentLocation { get; set; }
         public virtual Profesion Profesion { get; set; }

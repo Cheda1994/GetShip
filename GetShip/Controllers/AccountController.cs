@@ -123,16 +123,20 @@ namespace GetShip.Controllers
         public Galery Avatar(HttpPostedFileBase file, string type)
         {
             Galery gal = new Galery();
-            if (file != null)
+            try
+            {       
+                    byte[] fileByteArray = new byte[file.ContentLength];
+                    //gal.ImageData = new byte[file.ContentLength];
+                    file.InputStream.Read(fileByteArray, 0, file.ContentLength);
+                    gal.ImageData = fileByteArray;  
+            }
+            catch (ArgumentNullException)
             {
-                byte[] fileByteArray = new byte[file.ContentLength];
-                //gal.ImageData = new byte[file.ContentLength];
-                file.InputStream.Read(fileByteArray, 0, file.ContentLength);
-                gal.ImageData = fileByteArray;
-                context.Galerys.Add(gal);
-                context.SaveChanges();
+                byte[] fileByteArray = new byte[0];
             }
             gal.DateUploaded = DateTime.Now;
+            context.Galerys.Add(gal);
+            context.SaveChanges();
             // after successfully uploading redirect the user
             return gal;
         }
@@ -148,6 +152,7 @@ namespace GetShip.Controllers
             Company comp = Users.GetShallowUser(context,System.Web.HttpContext.Current.User.Identity.GetUserId()).Company;
             Employe empl = context.Employees.Find(user.Id);
             empl.Profesion = user.Employe.Profesion;
+            empl.Famaly = new Famaly() {SelaryAcsess = false , GaleryAcsess = false , WetherAcsess = false , LocationAcsess = false};
             comp.Employes.Add(empl);
             context.Entry(comp).State = EntityState.Modified;
             context.SaveChanges();

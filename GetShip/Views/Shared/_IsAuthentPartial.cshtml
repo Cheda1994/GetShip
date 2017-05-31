@@ -1,14 +1,15 @@
 ﻿@using Microsoft.AspNet.Identity
 
 @{
-    
-    if (GetShip.Models.Users.Deep_Current_User().Avatar != null && GetShip.Models.Users.Deep_Current_User().Avatar.ImageData != null)
-    {
-        byte[] avatar = null;
-        avatar = GetShip.Models.Galery.Current_Avatar();
-        <img src="data:image;base64,@System.Convert.ToBase64String(avatar)" class="img-circle" style="width:70px"/>
-    }
-
+        byte[] avatar = GetShip.Models.Galery.Current_Avatar();
+        if (avatar != null)
+        {
+            <img src="data:image;base64,@System.Convert.ToBase64String(avatar)" class="img-circle" style="width:70px"/>   
+        }
+        else
+        {
+            <img src="https://www.ioa.uni-bonn.de/studiengangsmanagement/mentoren/avatar-1577909-960-720.png" class="img-circle" style="width:70px"/>
+        }
 }
 
 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
