@@ -14,13 +14,15 @@ using Vereyon.Web;
 
 namespace GetShip.Controllers
 {
-    //[UserFiltingSystem("Company")]
+    [UserFiltingSystem("Company")]
     public class CompanyController : Controller
     {
         //
         // GET: /Company/
         public ActionResult Index()
         {
+            var x = System.Web.HttpContext.Current.User;
+            ViewBag.Test = System.Web.HttpContext.Current.User.Identity;
             return View();
         }
 

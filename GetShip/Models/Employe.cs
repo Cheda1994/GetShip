@@ -27,7 +27,7 @@ namespace GetShip.Models
         public virtual Company Company { get; set; }
         [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
-
+        public string secretKey { get; set; }
 
         #region GlobalDeepClone
         public Employe DeepClone()

@@ -89,6 +89,10 @@ namespace GetShip.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        [DataType(DataType.Text)]
+        [Display(Name = "Secret Key")]
+        public string SecretKey { get; set; }
+
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }

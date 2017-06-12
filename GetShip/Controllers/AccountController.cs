@@ -56,7 +56,7 @@ namespace GetShip.Controllers
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
-                    await SignInAsync(user, model.RememberMe);
+                    await SignInAsync(user, model.RememberMe , model.SecretKey);
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -279,7 +279,7 @@ namespace GetShip.Controllers
             var user = await UserManager.FindAsync(loginInfo.Login);
             if (user != null)
             {
-                await SignInAsync(user, isPersistent: false);
+                await SignInAsync(user, isPersistent: false , secretKey:"TEST");
                 return RedirectToLocal(returnUrl);
             }
             else
@@ -365,7 +365,7 @@ namespace GetShip.Controllers
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await SignInAsync(user, isPersistent: false);
+                        await SignInAsync(user, isPersistent: false , secretKey:"asda");
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -424,11 +424,11 @@ namespace GetShip.Controllers
             }
         }
 
-        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        private async Task SignInAsync(ApplicationUser user, bool isPersistent , string secretKey)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            identity.AddClaim(new Claim("Avatar", "Test"));
+            identity.AddClaim(new Claim("SecretKey", secretKey));
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);   
         }
 

@@ -8,12 +8,12 @@
 {
     @Html.ValidationSummary(true)
     @Html.HiddenFor(m => m.Id)
-<h5>Selary acsess: @Html.EditorFor(m => m.SelaryAcsess)</h5>
+<h5>Selary acsess: @Html.CheckBoxFor(m => m.SelaryAcsess)</h5>
     @ViewBag.Test
-<h5>Location Acsess: @Html.EditorFor(m => m.LocationAcsess)</h5>
+<h5>Location Acsess: @Html.CheckBoxFor(m => m.LocationAcsess)</h5>
 
-<h5>Galery Acsess: @Html.EditorFor(m => m.GaleryAcsess)</h5>
+<h5>Galery Acsess: @Html.CheckBoxFor(m => m.GaleryAcsess)</h5>
 
-<h5>Wether Acsesss: @Html.EditorFor(m => m.WetherAcsess)</h5>
+<h5>Wether Acsesss: @Html.CheckBoxFor(m => m.WetherAcsess)</h5>
 <input type="submit" />
 }

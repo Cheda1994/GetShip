@@ -40,10 +40,14 @@ namespace GetShip.Controllers
             {
                 try
                 {
-                    famaly = context.Famalis.Find(famaly.Id);
-                    context.Entry(famaly).State = EntityState.Modified;
-                    context.SaveChanges();
+                    Task task = Task.Run(() => 
+                    {
+                        context.Entry(famaly).State = EntityState.Modified;
+                        context.SaveChanges();
+                    });
+                    task.Wait();
                     return View();
+                    
                 }
                 catch (InvalidOperationException e)
                 {

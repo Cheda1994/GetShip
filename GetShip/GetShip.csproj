@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201705231932324_Famaly.Designer.cs">
       <DependentUpon>201705231932324_Famaly.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706031915077_SecretKey.cs" />
+    <Compile Include="Migrations\201706031915077_SecretKey.Designer.cs">
+      <DependentUpon>201706031915077_SecretKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
@@ -284,6 +288,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705231932324_Famaly.resx">
       <DependentUpon>201705231932324_Famaly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706031915077_SecretKey.resx">
+      <DependentUpon>201706031915077_SecretKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

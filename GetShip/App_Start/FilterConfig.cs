@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Linq;
 
 namespace GetShip
 {
@@ -13,6 +14,17 @@ namespace GetShip
             filters.Add(new HandleErrorAttribute());
         }
     }
+
+
+    public class EmployeAccessFilter : FilterAttribute, IAuthorizationFilter
+    {
+        public void OnAuthorization(AuthorizationContext filterContext)
+        {
+            var identity = (System.Security.Claims.ClaimsPrincipal)System.Threading.Thread.CurrentPrincipal;
+            var name = identity.Claims;
+        }
+    }
+
 
 
     public class ObjectsCompatibility : FilterAttribute, IActionFilter
